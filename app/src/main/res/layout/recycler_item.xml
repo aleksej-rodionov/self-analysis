@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginHorizontal="10dp"
+    android:layout_marginVertical="6dp"
+    app:cardCornerRadius="6dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/tv_preview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="3"
+            android:layout_toLeftOf="@+id/tv_main_date"
+            android:layout_marginRight="10dp"
+            android:text="Я съел замороженные наггетсы, которые пролежали в выклюенном холодильнике 7 часов. Предположим, что пока морозилка размораживалась, прошло 1-2 часа до момента, когда котлеты обрели комнатную температуру. Достаточно ли 5-6 часов для развития в наггетсах вредных бактерий, которые могут нанести вред моему здоровью? Стоит ли выблевать их?"
+            android:textSize="18sp"
+            android:textColor="@color/colorBlack"/>
+
+        <TextView
+            android:id="@+id/tv_main_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:text="03.02.1991"
+            android:textAlignment="viewEnd"
+            />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

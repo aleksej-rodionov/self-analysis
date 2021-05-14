@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/notesFragment">
+
+    <fragment
+        android:id="@+id/notesFragment"
+        android:name="space.rodionov.selfanalysis.NotesFragment"
+        android:label="Notes"
+        tools:layout="@layout/fragment_notes">
+        <action
+            android:id="@+id/action_notesFragment_to_addEditNoteFragment"
+            app:destination="@id/addEditNoteFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addEditNoteFragment"
+        android:name="space.rodionov.selfanalysis.AddEditNoteFragment"
+        android:label="{title}"
+        tools:layout="@layout/fragment_add_edit_note">
+        <argument
+            android:name="note"
+            android:defaultValue="@null"
+            app:argType="space.rodionov.selfanalysis.Note"
+            app:nullable="true" />
+        <argument
+            android:name="title"
+            app:argType="string" />
+    </fragment>
+    <dialog
+        android:id="@+id/deleteAllDialogFragment"
+        android:name="space.rodionov.selfanalysis.DeleteAllDialogFragment"
+        android:label="DeleteAllDialogFragment" />
+    <action
+        android:id="@+id/action_global_deleteAllDialogFragment"
+        app:destination="@id/deleteAllDialogFragment" />
+</navigation>

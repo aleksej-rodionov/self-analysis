@@ -1,0 +1,78 @@
+<resources>
+    <string name="app_name">SelfAnalysis aka Feeling Diary</string>
+
+    <string name="situation">Situation</string>
+    <string name="feelings">Feelings</string>
+    <string name="in_the_body">In the body</string>
+    <string name="wanted_to_do">What I wanted to do</string>
+    <string name="what_does_the_feeling_mean">What does the feeling mean</string>
+    <string name="thoughts">Thoughts</string>
+    <string name="fears">Fears</string>
+    <string name="asking_from_hp">What I ask from the Higher Power</string>
+    <string name="inner_critic">Inner Critic\'s voice</string>
+    <string name="loving_parent">Loving Parent\'s voice</string>
+    <string name="save">Save</string>
+    <string name="add_note">New situation</string>
+    <string name="please_insert_info">Please fill at least 3 first graphs</string>
+    <string name="note_saved">Note saved</string>
+    <string name="note_not_saved">Note not saved</string>
+    <string name="note_deleted">Note deleted</string>
+    <string name="delete_all_notes">Delete all notes</string>
+    <string name="all_notes_deleted">All notes deleted</string>
+    <string name="note_updated">Note updated</string>
+    <string name="search">Search</string>
+    <string name="notes_filtered_by">Notes filtered by </string>
+    <string name="all_notes">All notes</string>
+    <string name="edit_note">Edit note</string>
+    <string name="new_note">New note</string>
+    <string name="proceed">OK</string>
+    <string name="preview1">Swipe in any direction to remove the note</string>
+    <string name="preview2">Click \"+\" at the bottom to create a new note</string>
+
+    <string name="date_created">Created: </string>
+
+
+    <string name="mad">Mad</string>
+    <string name="glad">Glad</string>
+    <string name="lonely">Lonely</string>
+    <string name="scared">Scared</string>
+    <string name="sad">Sad</string>
+
+
+    <string name="example_situation">Example situation</string>
+    <string name="example_feelings">[ПРИМЕР] Раздражение, усталость, злость на себя</string>
+    <string name="example_in_the_body">[ПРИМЕР] Ноют мышцы шеи и плеч, затекла спина, голод</string>
+    <string name="example_wanted_to_do">[ПРИМЕР] Подвигаться, выпить воды</string>
+    <string name="example_what_does_the_feeling_mean">[ПРИМЕР] Я погрузлся в просмотр ютуба после тревожных мыслей о предстоящей втрече с начальством</string>
+    <string name="example_thoughts">[ПРИМЕР] Вероятно от ситуаций, вызывающих тревогу и гнев, я ухожу в компульсии</string>
+    <string name="example_fears">[ПРИМЕР] и тд</string>
+    <string name="example_asking_from_hp">[ПРИМЕР] и тп</string>
+    <string name="example_inner_critic">[ПРИМЕР] ... </string>
+    <string name="example_loving_parent">[ПРИМЕР] ... </string>
+    <string name="example_situation_2">[ПРИМЕР] Лежу после длительного залипания в ютуб</string>
+    <string name="example_feelings_2">[ПРИМЕР] Раздражение, усталость, злость, досада на себя</string>
+    <string name="example_in_the_body_2">[ПРИМЕР] Ноют мышцы шеи и плеч, затекла спина</string>
+    <string name="example_wanted_to_do_2">[ПРИМЕР] Подвигаться, выпить воды</string>
+    <string name="example_what_does_the_feeling_mean_2">[ПРИМЕР] Я погрузлся в просмотр ютуба после грустных мыслей о родителях и их судьбе</string>
+    <string name="example_thoughts_2">[ПРИМЕР] Вероятно я отвлекся от тревожных мыслей и ушел в видео. От ситуаций, гнетущих меня, я ухожу в компульсию. В т.ч. от мелких раздражителей - напр., если в комнате душно</string>
+    <string name="example_fears_2">[ПРИМЕР] Смертельного диагноза</string>
+    <string name="example_asking_from_hp_2">[ПРИМЕР] - </string>
+    <string name="example_inner_critic_2">[ПРИМЕР] Ты снова потратил 3 часа своей жизни на ютуб</string>
+    <string name="example_loving_parent_2">[ПРИМЕР] Это хорошо чо появились такие чувства про отца и мать, это - отогревание. Молодец, что прописываешь дневник чувств и можешь отследить, в какой ситуации срываешься в компульсию. Это постепенная работа. Завтра днем можешь позвонить анонимным, чтобы не переживать все одному. Все получится</string>
+
+    <string name="filter">Filter by emotions</string>
+    <string name="add_your_own">Add your own</string>
+    <string name="nofilter">No filter</string>
+    <string name="search_hint">Search</string>
+    <string name="filter_by_mad">Filter by \"Mad\"</string>
+    <string name="filter_by_glad">Filter by \"Glad\"</string>
+    <string name="filter_by_lonely">Filter by \"Lonely\"</string>
+    <string name="filter_by_scared">Filter by \"Scared\"</string>
+    <string name="filter_by_sad">Filter by \"Sad\"</string>
+    <string name="undo">UNDO</string>
+    <string name="confirm_deletion">Confirm deletion</string>
+    <string name="yes">Yes</string>
+    <string name="cancel_action">Cancel</string>
+    <string name="really_delete_all">Do you really want to delete all notes?</string>
+
+</resources>
