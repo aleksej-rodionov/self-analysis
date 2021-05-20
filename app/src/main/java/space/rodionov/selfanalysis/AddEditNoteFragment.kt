@@ -33,7 +33,7 @@ class AddEditNoteFragment : Fragment(R.layout.fragment_add_edit_note), CompoundB
         super.onViewCreated(view, savedInstanceState)
 
         val calendar = Calendar.getInstance()
-        val currentDate = DateFormat.getDateTimeInstance(DateFormat.DEFAULT, DateFormat.SHORT).format(calendar.time)
+        val currentDate = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT).format(calendar.time)
 
         val binding = FragmentAddEditNoteBinding.bind(view)
 
