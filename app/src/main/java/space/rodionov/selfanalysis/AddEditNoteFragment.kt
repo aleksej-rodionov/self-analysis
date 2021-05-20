@@ -5,8 +5,6 @@ import android.view.View
 import android.widget.CompoundButton
 import androidx.core.os.bundleOf
 import androidx.core.view.children
-import androidx.core.view.forEach
-import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
@@ -20,6 +18,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import space.rodionov.selfanalysis.databinding.FragmentAddEditNoteBinding
 import java.text.DateFormat
+import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -34,7 +33,7 @@ class AddEditNoteFragment : Fragment(R.layout.fragment_add_edit_note), CompoundB
         super.onViewCreated(view, savedInstanceState)
 
         val calendar = Calendar.getInstance()
-        val currentDate = DateFormat.getDateInstance(DateFormat.DEFAULT).format(calendar.time)
+        val currentDate = DateFormat.getDateTimeInstance(DateFormat.DEFAULT, DateFormat.SHORT).format(calendar.time)
 
         val binding = FragmentAddEditNoteBinding.bind(view)
 
@@ -122,8 +121,8 @@ class AddEditNoteFragment : Fragment(R.layout.fragment_add_edit_note), CompoundB
                     is AddEditNoteViewModel.AddEditNoteEvent.NavigateBackWithResult -> {
                         binding.etSituation.clearFocus() // hides the keyboard (CHECK IF DELETE THIS LINE!!!)
                         setFragmentResult(
-                            "add_edit_request",
-                            bundleOf("add_edit_result" to event.result)
+                                "add_edit_request",
+                                bundleOf("add_edit_result" to event.result)
                         )
                         findNavController().popBackStack()
                     }
