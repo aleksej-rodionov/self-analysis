@@ -11,15 +11,15 @@ plugins {
 
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 30
     buildToolsVersion "29.0.3"
 
     defaultConfig {
         applicationId "space.rodionov.selfanalysis"
         minSdkVersion 23
         targetSdkVersion 30
-        versionCode 9
-        versionName "2"
+        versionCode 10
+        versionName "2.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

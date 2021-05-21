@@ -82,6 +82,7 @@ class NotesFragment : Fragment(R.layout.fragment_notes), NotesAdapter.OnItemClic
                         Snackbar.make(requireView(), requireContext().resources.getString(R.string.note_deleted), Snackbar.LENGTH_LONG)
                             .setAction(requireContext().resources.getString(R.string.undo)) {
                                 viewModel.onUndoDeleteClick(event.note)
+//                                binding.recyclerView.scrollToPosition(0)
                             }.show()
                     }
                     is NotesViewModel.NotesEvent.NavigateToAddNoteScreen -> {
