@@ -1,4 +1,4 @@
-package space.rodionov.selfanalysis
+package space.rodionov.selfanalysis.data
 
 import android.content.Context
 import android.util.Log

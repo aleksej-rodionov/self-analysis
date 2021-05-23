@@ -1,4 +1,4 @@
-package space.rodionov.selfanalysis
+package space.rodionov.selfanalysis.data
 
 import android.os.Parcelable
 import androidx.room.Entity

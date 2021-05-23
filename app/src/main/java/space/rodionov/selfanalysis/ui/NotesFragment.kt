@@ -1,4 +1,4 @@
-package space.rodionov.selfanalysis
+package space.rodionov.selfanalysis.ui
 
 import android.os.Bundle
 import android.view.Menu
@@ -17,10 +17,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
-import space.rodionov.selfanalysis.NotesFragmentDirections
+import space.rodionov.selfanalysis.ui.NotesFragmentDirections
+import space.rodionov.selfanalysis.R
+import space.rodionov.selfanalysis.data.Note
 import space.rodionov.selfanalysis.databinding.FragmentNotesBinding
+import space.rodionov.selfanalysis.exhaustive
+import space.rodionov.selfanalysis.onQueryTextChanged
 
 @AndroidEntryPoint
 class NotesFragment : Fragment(R.layout.fragment_notes), NotesAdapter.OnItemClickListener {
@@ -87,16 +90,16 @@ class NotesFragment : Fragment(R.layout.fragment_notes), NotesAdapter.OnItemClic
                     }
                     is NotesViewModel.NotesEvent.NavigateToAddNoteScreen -> {
                         val action =
-                            NotesFragmentDirections.actionNotesFragmentToAddEditNoteFragment(
-                                null, requireContext().resources.getString(R.string.new_note)
-                            )
+                                NotesFragmentDirections.actionNotesFragmentToAddEditNoteFragment(
+                                        null, requireContext().resources.getString(R.string.new_note)
+                                )
                         findNavController().navigate(action)
                     }
                     is NotesViewModel.NotesEvent.NavigateToEditNoteScreen -> {
                         val action =
-                            NotesFragmentDirections.actionNotesFragmentToAddEditNoteFragment(
-                                event.note, requireContext().resources.getString(R.string.edit_note)
-                            )
+                                NotesFragmentDirections.actionNotesFragmentToAddEditNoteFragment(
+                                        event.note, requireContext().resources.getString(R.string.edit_note)
+                                )
                         findNavController().navigate(action)
                     }
                     is NotesViewModel.NotesEvent.ShowTaskSavedConfirmationMessage -> {

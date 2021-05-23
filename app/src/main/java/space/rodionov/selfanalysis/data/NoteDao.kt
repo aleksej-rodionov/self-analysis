@@ -1,4 +1,4 @@
-package space.rodionov.selfanalysis
+package space.rodionov.selfanalysis.data
 
 import androidx.room.*
 import kotlinx.coroutines.flow.Flow

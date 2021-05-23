@@ -1,37 +1,31 @@
-package space.rodionov.selfanalysis
+package space.rodionov.selfanalysis.ui
 
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.channels.Channel
 //import kotlinx.coroutines.flow.flatMapLatest
 //import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.flow.*
+import space.rodionov.selfanalysis.data.Note
+import space.rodionov.selfanalysis.data.NoteDao
+import space.rodionov.selfanalysis.data.PreferencesRepository
 
 class NotesViewModel @ViewModelInject constructor(
-    private val noteDao: NoteDao,
-    private val preferencesRepository: PreferencesRepository,
-    @Assisted private val state: SavedStateHandle
+        private val noteDao: NoteDao,
+        private val preferencesRepository: PreferencesRepository,
+        @Assisted private val state: SavedStateHandle
 ) : ViewModel() {
 
     private val allEmoList = listOf("Mad", "Glad,", "Lonely", "Scared", "Sad")
     private var emoFilterList = ArrayList<String>()
     private val gson = Gson()
-//    val typeToken = object : TypeToken<List<String>>() {}.type
 
     val searchQuery = state.getLiveData("searchQuery", "")
     val emoFlow = preferencesRepository.emotionFlow
     val emotionLivedata = emoFlow.asLiveData()
-
-//    val filtFlow = preferencesRepository.filteredFlow
-//
-//    val eFJsonFlow = preferencesRepository.emoFilterJsonFlow
-//    val emoFilterJsontLiveData = eFJsonFlow.asLiveData()
-
-//    private val mFiltFlow = preferencesRepository.mainFilterFlow
 
     private val notesEventChannel = Channel<NotesEvent>() //2
     val notesEvent = notesEventChannel.receiveAsFlow() //4
@@ -42,10 +36,6 @@ class NotesViewModel @ViewModelInject constructor(
         noteDao.getNotes(query, emoPrefs)
     }
 
-//    private val notesFlow = searchQuery.asFlow().flatMapLatest { // asFlow() added
-//        noteDao.getNotes(it)
-//    }
-
     val notes = notesFlow.asLiveData()
 
     fun onNoEmotionFilterClick(filterOn: Boolean) = viewModelScope.launch {
@@ -55,29 +45,6 @@ class NotesViewModel @ViewModelInject constructor(
     fun onEmotionClick(emotion: String) = viewModelScope.launch {
         preferencesRepository.updateEmotion(emotion)
     }
-
-    /*fun onEmotionClick(emotion: String, isChecked: Boolean*//*, emoFilterJson: String*//*) =
-        viewModelScope.launch {
-            preferencesRepository.updateFilterOn(true)
-//            emoFilterList.clear()
-            eFJsonFlow.collect { json ->
-                emoFilterList = gson.fromJson<ArrayList<String>>(json, typeToken)
-//                allEmoList.forEach { emoItem ->
-//                    if (jsonFlow.contains(emoItem)) {
-//                        emoFilterList.add(emoItem)
-//                    }
-//                }
-            }
-//        emoFilterList = gson.fromJson<List<String>>(emoFilterJson, typeToken)
-            if (isChecked) {
-                emoFilterList.add(emotion)
-            } else {
-                emoFilterList.remove(emotion)
-            }
-//        emoFilterJson = gson.toJson(emoFilterList)
-            preferencesRepository.updateEmoFilterList(gson.toJson(emoFilterList))
-//            emoFilterList.clear()
-        }*/
 
     fun onNoteSelected(note: Note) = viewModelScope.launch {
         notesEventChannel.send(NotesEvent.NavigateToEditNoteScreen(note))

@@ -1,4 +1,4 @@
-package space.rodionov.selfanalysis
+package space.rodionov.selfanalysis.ui
 
 import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
@@ -8,6 +8,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupActionBarWithNavController
 import dagger.hilt.android.AndroidEntryPoint
+import space.rodionov.selfanalysis.R
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {

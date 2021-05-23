@@ -1,10 +1,11 @@
-package space.rodionov.selfanalysis
+package space.rodionov.selfanalysis.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import space.rodionov.selfanalysis.data.Note
 import space.rodionov.selfanalysis.databinding.RecyclerItemBinding
 
 class NotesAdapter(private val listener: OnItemClickListener) : ListAdapter<Note, NotesAdapter.NotesViewHolder>(NotesDiff()) {

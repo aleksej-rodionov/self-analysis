@@ -1,4 +1,4 @@
-package space.rodionov.selfanalysis
+package space.rodionov.selfanalysis.ui
 
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
@@ -8,16 +8,18 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
+import space.rodionov.selfanalysis.data.Note
+import space.rodionov.selfanalysis.data.NoteDao
 import java.text.DateFormat
 import java.util.*
 
 class AddEditNoteViewModel @ViewModelInject constructor(
-    private val noteDao: NoteDao,
-    @Assisted private val state: SavedStateHandle
+        private val noteDao: NoteDao,
+        @Assisted private val state: SavedStateHandle
 ) : ViewModel() {
 
     val calendar = Calendar.getInstance()
-    val currentDate = DateFormat.getDateInstance(DateFormat.DEFAULT).format(calendar.time)
+    val currentDate = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT).format(calendar.time)
 
     val note = state.get<Note>("note") // the same String name as in the NavGraph argument
 

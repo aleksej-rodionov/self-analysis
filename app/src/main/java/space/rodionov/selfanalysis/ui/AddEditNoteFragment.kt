@@ -1,4 +1,4 @@
-package space.rodionov.selfanalysis
+package space.rodionov.selfanalysis.ui
 
 import android.os.Bundle
 import android.view.View
@@ -16,9 +16,10 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
+import space.rodionov.selfanalysis.R
 import space.rodionov.selfanalysis.databinding.FragmentAddEditNoteBinding
+import space.rodionov.selfanalysis.exhaustive
 import java.text.DateFormat
-import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
