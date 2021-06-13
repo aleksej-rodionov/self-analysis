@@ -12,7 +12,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="16dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:id="@+id/focusable_layout"
+        >
 
         <TextView
             android:id="@+id/tv_add_edit_date"
@@ -38,14 +42,31 @@
                     android:layout_marginVertical="8dp"
                     app:cardCornerRadius="6dp">
 
-                    <EditText
-                        android:id="@+id/et_situation"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilSituation"
+                        android:layout_marginTop="3dp"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/situation"
+                        android:textColorHint="?android:textColorHint"
+                        app:layout_constraintBottom_toBottomOf="@+id/spFromCurrency"
+                        app:layout_constraintEnd_toStartOf="@+id/spFromCurrency"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/spFromCurrency">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etSituation"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/colorWhite"
-                        android:hint="@string/situation"
+                        android:textSize="17sp"
                         android:inputType="textMultiLine|textCapSentences"
-                        android:padding="10dp" />
+                        android:padding="10dp"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
                 </androidx.cardview.widget.CardView>
 
 
@@ -65,6 +86,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentTop="true"
                             android:padding="8dp"
+                            android:textSize="17sp"
                             android:text="@string/feelings"
                             android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
@@ -75,6 +97,8 @@
                             android:layout_below="@id/cg_emotions"
                             android:background="@color/colorWhite"
                             android:hint="@string/add_your_own"
+                            android:textSize="17sp"
+                            android:textColorHint="?android:textColorHint"
                             android:inputType="textMultiLine|textCapSentences"
                             android:padding="8dp" />
 
@@ -131,14 +155,30 @@
                     android:layout_marginVertical="8dp"
                     app:cardCornerRadius="6dp">
 
-                    <EditText
-                        android:id="@+id/et_in_the_body"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilInTheBody"
+                        android:layout_marginTop="3dp"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/colorWhite"
                         android:hint="@string/in_the_body"
-                        android:inputType="textMultiLine|textCapSentences"
-                        android:padding="8dp" />
+                        android:textColorHint="?android:textColorHint"
+                        app:layout_constraintBottom_toBottomOf="@+id/spFromCurrency"
+                        app:layout_constraintEnd_toStartOf="@+id/spFromCurrency"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/spFromCurrency">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etInTheBody"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/colorWhite"
+                            android:textSize="17sp"
+                            android:inputType="textMultiLine|textCapSentences"
+                            android:padding="10dp"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
@@ -147,14 +187,29 @@
                     android:layout_marginVertical="8dp"
                     app:cardCornerRadius="6dp">
 
-                    <EditText
-                        android:id="@+id/et_wanted_to_do"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilWantedToDo"
+                        android:layout_marginTop="3dp"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/colorWhite"
                         android:hint="@string/wanted_to_do"
-                        android:inputType="textMultiLine|textCapSentences"
-                        android:padding="8dp" />
+                        android:textColorHint="?android:textColorHint"
+                        app:layout_constraintBottom_toBottomOf="@+id/spFromCurrency"
+                        app:layout_constraintEnd_toStartOf="@+id/spFromCurrency"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/spFromCurrency">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etWantedToDo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="17sp"
+                            android:background="@color/colorWhite"
+                            android:inputType="textMultiLine|textCapSentences"
+                            android:padding="10dp"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
@@ -163,14 +218,29 @@
                     android:layout_marginVertical="8dp"
                     app:cardCornerRadius="6dp">
 
-                    <EditText
-                        android:id="@+id/et_what_does_the_feeling_mean"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilWhatDoesTheFeelingMean"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/colorWhite"
                         android:hint="@string/what_does_the_feeling_mean"
-                        android:inputType="textMultiLine|textCapSentences"
-                        android:padding="8dp" />
+                        android:layout_marginTop="3dp"
+                        android:textColorHint="?android:textColorHint"
+                        app:layout_constraintBottom_toBottomOf="@+id/spFromCurrency"
+                        app:layout_constraintEnd_toStartOf="@+id/spFromCurrency"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/spFromCurrency">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etWhatDoesTheFeelingMean"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="17sp"
+                            android:background="@color/colorWhite"
+                            android:inputType="textMultiLine|textCapSentences"
+                            android:padding="10dp"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
@@ -179,14 +249,29 @@
                     android:layout_marginVertical="8dp"
                     app:cardCornerRadius="6dp">
 
-                    <EditText
-                        android:id="@+id/et_thoughts"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilThoughts"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/colorWhite"
+                        android:layout_marginTop="3dp"
                         android:hint="@string/thoughts"
-                        android:inputType="textMultiLine|textCapSentences"
-                        android:padding="8dp" />
+                        android:textColorHint="?android:textColorHint"
+                        app:layout_constraintBottom_toBottomOf="@+id/spFromCurrency"
+                        app:layout_constraintEnd_toStartOf="@+id/spFromCurrency"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/spFromCurrency">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etThoughts"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="17sp"
+                            android:background="@color/colorWhite"
+                            android:inputType="textMultiLine|textCapSentences"
+                            android:padding="10dp"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
@@ -195,13 +280,29 @@
                     android:layout_marginVertical="8dp"
                     app:cardCornerRadius="6dp">
 
-                    <EditText
-                        android:id="@+id/et_fears"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilFears"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/colorWhite"
                         android:hint="@string/fears"
-                        android:padding="8dp" />
+                        android:layout_marginTop="3dp"
+                        android:textColorHint="?android:textColorHint"
+                        app:layout_constraintBottom_toBottomOf="@+id/spFromCurrency"
+                        app:layout_constraintEnd_toStartOf="@+id/spFromCurrency"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/spFromCurrency">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etFears"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="17sp"
+                            android:background="@color/colorWhite"
+                            android:inputType="textMultiLine|textCapSentences"
+                            android:padding="10dp"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
@@ -210,14 +311,29 @@
                     android:layout_marginVertical="8dp"
                     app:cardCornerRadius="6dp">
 
-                    <EditText
-                        android:id="@+id/et_asking_from_hp"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilAskingFromHp"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/colorWhite"
                         android:hint="@string/asking_from_hp"
-                        android:inputType="textMultiLine|textCapSentences"
-                        android:padding="8dp" />
+                        android:layout_marginTop="3dp"
+                        android:textColorHint="?android:textColorHint"
+                        app:layout_constraintBottom_toBottomOf="@+id/spFromCurrency"
+                        app:layout_constraintEnd_toStartOf="@+id/spFromCurrency"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/spFromCurrency">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etAskingFromHp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="17sp"
+                            android:background="@color/colorWhite"
+                            android:inputType="textMultiLine|textCapSentences"
+                            android:padding="10dp"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
@@ -226,14 +342,29 @@
                     android:layout_marginVertical="8dp"
                     app:cardCornerRadius="6dp">
 
-                    <EditText
-                        android:id="@+id/et_inner_critic"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilInnerCritic"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/colorWhite"
                         android:hint="@string/inner_critic"
-                        android:inputType="textMultiLine|textCapSentences"
-                        android:padding="8dp" />
+                        android:layout_marginTop="3dp"
+                        android:textColorHint="?android:textColorHint"
+                        app:layout_constraintBottom_toBottomOf="@+id/spFromCurrency"
+                        app:layout_constraintEnd_toStartOf="@+id/spFromCurrency"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/spFromCurrency">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etInnerCritic"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="17sp"
+                            android:background="@color/colorWhite"
+                            android:inputType="textMultiLine|textCapSentences"
+                            android:padding="10dp"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
@@ -242,14 +373,29 @@
                     android:layout_marginVertical="8dp"
                     app:cardCornerRadius="6dp">
 
-                    <EditText
-                        android:id="@+id/et_loving_parent"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilLovingParent"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@color/colorWhite"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
                         android:hint="@string/loving_parent"
-                        android:inputType="textMultiLine|textCapSentences"
-                        android:padding="8dp" />
+                        android:textColorHint="?android:textColorHint"
+                        app:layout_constraintBottom_toBottomOf="@+id/spFromCurrency"
+                        app:layout_constraintEnd_toStartOf="@+id/spFromCurrency"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/spFromCurrency">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etLovingParent"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/colorWhite"
+                            android:textSize="17sp"
+                            android:inputType="textMultiLine|textCapSentences"
+                            android:padding="10dp"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
                 </androidx.cardview.widget.CardView>
 
 

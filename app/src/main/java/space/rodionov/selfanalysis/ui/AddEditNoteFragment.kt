@@ -1,6 +1,8 @@
 package space.rodionov.selfanalysis.ui
 
+import android.graphics.Rect
 import android.os.Bundle
+import android.view.MotionEvent
 import android.view.View
 import android.widget.CompoundButton
 import androidx.core.os.bundleOf
