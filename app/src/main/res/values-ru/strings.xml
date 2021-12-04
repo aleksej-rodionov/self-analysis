@@ -10,6 +10,8 @@
     <string name="filter">Фильтр по эмоциям</string>
     <string name="add_your_own">Укажите свои</string>
     <string name="glad">Удовольствие</string>
+    <string name="action_export_to_csv">Экспорт в таблицы</string>
+    <string name="action_import_from_csv">Импорт из CSV</string>
     <string name="delete_all_notes">Удалить все записи</string>
     <string name="fears">Страхи</string>
     <string name="scared">Страх</string>

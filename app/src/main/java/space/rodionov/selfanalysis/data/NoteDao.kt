@@ -34,6 +34,9 @@ interface NoteDao {
             "ORDER BY id DESC")
     fun getNotes(searchQuery: String, emotionFilter: String): Flow<List<Note>>
 
+    @Query("SELECT * FROM note_table ORDER BY id DESC")
+    fun getAllNotes(): Flow<List<Note>>
+
     /*fun getNotes(searchQuery: String, filterOn: Boolean, emoFilterList: *//*String*//*ArrayList<String>): Flow<List<Note>> =
         when(filterOn) {
             true -> getFilteredNotes(searchQuery, emoFilterList)

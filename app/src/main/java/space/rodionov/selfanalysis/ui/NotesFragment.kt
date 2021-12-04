@@ -18,7 +18,6 @@ import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import space.rodionov.selfanalysis.ui.NotesFragmentDirections
 import space.rodionov.selfanalysis.R
 import space.rodionov.selfanalysis.data.Note
 import space.rodionov.selfanalysis.databinding.FragmentNotesBinding
@@ -36,6 +35,8 @@ class NotesFragment : Fragment(R.layout.fragment_notes), NotesAdapter.OnItemClic
         super.onViewCreated(view, savedInstanceState)
 
         val binding = FragmentNotesBinding.bind(view)
+
+        viewModel.observeAllNotes()
 
         val notesAdapter = NotesAdapter(this)
 
@@ -102,12 +103,15 @@ class NotesFragment : Fragment(R.layout.fragment_notes), NotesAdapter.OnItemClic
                                 )
                         findNavController().navigate(action)
                     }
-                    is NotesViewModel.NotesEvent.ShowTaskSavedConfirmationMessage -> {
+                    is NotesViewModel.NotesEvent.ShowSnackbar -> {
                         Snackbar.make(requireView(), event.msg, Snackbar.LENGTH_SHORT).show()
                     }
                     NotesViewModel.NotesEvent.NavigateToDeleteAllScreen -> {
                         val action = NotesFragmentDirections.actionGlobalDeleteAllDialogFragment()
                         findNavController().navigate(action)
+                    }
+                    is NotesViewModel.NotesEvent.GoToFileActivity -> {
+                        startActivity(event.intent)
                     }
                 }.exhaustive
             }
@@ -175,6 +179,14 @@ class NotesFragment : Fragment(R.layout.fragment_notes), NotesAdapter.OnItemClic
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
+            R.id.action_export_to_csv -> {
+                viewModel.onExportToCSV(requireContext())
+                true
+            }
+            R.id.action_import_from_csv -> {
+                viewModel.onImportFromCSV(requireContext())
+                true
+            }
             R.id.action_delete_all_notes -> {
                 viewModel.onDeleteAllClick()
                 true
