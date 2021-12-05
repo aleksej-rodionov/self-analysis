@@ -3,6 +3,8 @@ package space.rodionov.selfanalysis
 import android.content.Context
 import android.content.Intent
 import androidx.core.content.FileProvider
+import com.jaiselrahman.filepicker.activity.FilePickerActivity
+import com.jaiselrahman.filepicker.config.Configurations
 import java.io.File
 
 // file picker utils
@@ -25,7 +27,19 @@ fun goToFileIntent(context: Context, file: File): Intent {
 
 //IMPORT
 
-
+fun filePickerIntent(context: Context): Intent {
+    val intent = Intent(context, FilePickerActivity::class.java)
+    intent.putExtra(FilePickerActivity.CONFIGS, Configurations.Builder()
+        .setCheckPermission(true)
+        .setShowFiles(true)
+        .setShowImages(false)
+        .setShowVideos(false)
+        .setMaxSelection(1)
+        .setSuffixes("csv", "txt")
+        .setSkipZeroSizeFiles(true)
+        .build())
+    return intent
+}
 
 // part 11
 val <T> T.exhaustive: T

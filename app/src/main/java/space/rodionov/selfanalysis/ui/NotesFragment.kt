@@ -1,10 +1,12 @@
 package space.rodionov.selfanalysis.ui
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
@@ -15,6 +17,8 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
+import com.jaiselrahman.filepicker.activity.FilePickerActivity
+import com.jaiselrahman.filepicker.model.MediaFile
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -113,6 +117,9 @@ class NotesFragment : Fragment(R.layout.fragment_notes), NotesAdapter.OnItemClic
                     is NotesViewModel.NotesEvent.GoToFileActivity -> {
                         startActivity(event.intent)
                     }
+                    is NotesViewModel.NotesEvent.PickFileActivity -> {
+                        filePickerActivityLauncher.launch(event.intent)
+                    }
                 }.exhaustive
             }
         }
@@ -125,6 +132,23 @@ class NotesFragment : Fragment(R.layout.fragment_notes), NotesAdapter.OnItemClic
 
         setHasOptionsMenu(true)
     }
+
+    private val filePickerActivityLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            if (it.resultCode != Activity.RESULT_CANCELED && it.data != null) {
+                val data = it.data
+                val mediaFiles = data?. getParcelableArrayListExtra<MediaFile>(
+                    FilePickerActivity.MEDIA_FILES
+                )
+                val uri = mediaFiles?.get(0)?.uri
+                val inputStream = uri?.let {
+                    requireContext().contentResolver.openInputStream(uri)
+                }
+                inputStream?.let { ips ->
+                    viewModel.parseInputStream(ips)
+                }
+            }
+        }
 
     override fun onItemClick(note: Note) {
         viewModel.onNoteSelected(note)

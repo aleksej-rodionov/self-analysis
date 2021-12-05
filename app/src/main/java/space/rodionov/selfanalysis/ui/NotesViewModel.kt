@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
+import com.github.doyaaaaaken.kotlincsv.dsl.csvReader
 import com.github.doyaaaaaken.kotlincsv.dsl.csvWriter
 import com.google.gson.Gson
 import kotlinx.coroutines.channels.Channel
@@ -16,9 +17,11 @@ import kotlinx.coroutines.flow.*
 import space.rodionov.selfanalysis.data.Note
 import space.rodionov.selfanalysis.data.NoteDao
 import space.rodionov.selfanalysis.data.PreferencesRepository
+import space.rodionov.selfanalysis.filePickerIntent
 import space.rodionov.selfanalysis.generateFile
 import space.rodionov.selfanalysis.goToFileIntent
 import java.io.File
+import java.io.InputStream
 
 private const val TAG = "NotesViewModel"
 class NotesViewModel @ViewModelInject constructor(
@@ -98,7 +101,30 @@ class NotesViewModel @ViewModelInject constructor(
     }
 
     fun onImportFromCSV(context: Context) {
+        val intent = filePickerIntent(context)
+        viewModelScope.launch {
+            notesEventChannel.send(NotesEvent.PickFileActivity(intent))
+        }
+    }
 
+    fun parseInputStream(inputStream: InputStream) = viewModelScope.launch {
+        val rows: List<List<String>> = csvReader {
+            skipMissMatchedRow = true
+        }.readAll(inputStream)
+
+        rows.forEachIndexed { index, row ->
+            if (index > 0) {
+                val note = Note(
+                    row[0], row[1], row[2], row[3], row[4], row[5],
+                    row[6], row[7], row[8], row[9], row[10], row[11]
+                )
+                addNote(note)
+            }
+        }
+    }
+
+    private fun addNote(note: Note) = viewModelScope.launch {
+        noteDao.insert(note)
     }
     //=========================CSV==================================
 
@@ -161,6 +187,7 @@ class NotesViewModel @ViewModelInject constructor(
         data class ShowSnackbar(val msg: String) : NotesEvent()
         object NavigateToDeleteAllScreen : NotesEvent()
         data class GoToFileActivity(val intent: Intent): NotesEvent()
+        data class PickFileActivity(val intent: Intent): NotesEvent()
     }
 
 }
