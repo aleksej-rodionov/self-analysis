@@ -89,7 +89,7 @@ class PreferencesRepository @Inject constructor(@ApplicationContext context: Con
             }
         }
         .map { preferences ->
-            val mode = preferences[PreferencesKeys.MODE] ?: 0
+            val mode = preferences[PreferencesKeys.MODE] ?: 1
             mode
         }
 

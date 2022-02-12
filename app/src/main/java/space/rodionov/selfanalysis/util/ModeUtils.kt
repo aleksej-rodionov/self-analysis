@@ -9,6 +9,7 @@ import android.util.TypedValue
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.cardview.widget.CardView
@@ -84,8 +85,6 @@ fun fetchColors(mode: Int, res: Resources): Array<Int> {
 }
 
 //===========================FETCHING==END====================================
-
-
 
 
 //===========================EXTENSIONS====================================
@@ -167,7 +166,14 @@ fun ViewGroup.redrawViewGroup(mode: Int) {
     val colors = fetchColors(mode, resources)
 
     if (this is CoordinatorLayout) this.redrawCoord(colors)
-    if (this is CardView) this.redrawCardView(colors)
+    if (this is CardView) {
+        this.redrawCardView(colors)
+        this.children.forEach {
+            if (it is RelativeLayout) {
+                it.redrawViewGroup(mode)
+            }
+        }
+    }
 
     if (this is Toolbar) this.redrawToolbar(colors)
     if (this is TextView) this.redrawTextView(colors)
@@ -176,11 +182,10 @@ fun ViewGroup.redrawViewGroup(mode: Int) {
     if (this is ChipGroup) this.redrawChips(colors)
     if (this is TextInputLayout) this.redrawTIL(colors)
 
+//    if (this is ViewGroup) this.redrawViewGroup(mode)
 }
 
 //===========================EXTENSIONS==END====================================
-
-
 
 
 interface ModeAdapter {

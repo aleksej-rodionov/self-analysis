@@ -2,10 +2,7 @@ package space.rodionov.selfanalysis.ui
 
 import android.app.Activity
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
-import android.view.View
+import android.view.*
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
@@ -21,12 +18,14 @@ import com.jaiselrahman.filepicker.activity.FilePickerActivity
 import com.jaiselrahman.filepicker.model.MediaFile
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import space.rodionov.selfanalysis.R
 import space.rodionov.selfanalysis.data.Note
 import space.rodionov.selfanalysis.databinding.FragmentNotesBinding
 import space.rodionov.selfanalysis.exhaustive
 import space.rodionov.selfanalysis.onQueryTextChanged
+import space.rodionov.selfanalysis.util.redrawViewGroup
 
 @AndroidEntryPoint
 class NotesFragment : Fragment(R.layout.fragment_notes), NotesAdapter.OnItemClickListener {
@@ -127,6 +126,13 @@ class NotesFragment : Fragment(R.layout.fragment_notes), NotesAdapter.OnItemClic
         viewModel.emotionLivedata.observe(viewLifecycleOwner) { emo ->
             viewLifecycleOwner.lifecycleScope.launch {
                 (activity as MainActivity).supportActionBar?.title = if (emo != "") requireContext().resources.getString((R.string.notes_filtered_by)) + " $emo" else requireContext().resources.getString((R.string.all_notes))
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            viewModel.mode.collectLatest {
+                val mode = it?: return@collectLatest
+                (binding.root as ViewGroup).redrawViewGroup(mode)
             }
         }
 

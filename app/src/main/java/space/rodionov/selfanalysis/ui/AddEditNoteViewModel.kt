@@ -6,7 +6,9 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import space.rodionov.selfanalysis.data.Note
 import space.rodionov.selfanalysis.data.NoteDao
@@ -19,8 +21,11 @@ class AddEditNoteViewModel @ViewModelInject constructor(
     private val preferencesRepository: PreferencesRepository,
     @Assisted private val state: SavedStateHandle
 ) : ViewModel() {
-    val _mode = preferencesRepository.modeFlow
-    val _followSystemMode = preferencesRepository.followSystemModeFlow
+    private val _mode = preferencesRepository.modeFlow
+    val mode = _mode.stateIn(viewModelScope, SharingStarted.Lazily, null)
+
+    private val _followSystemMode = preferencesRepository.followSystemModeFlow
+    val followSystemMode = _followSystemMode.stateIn(viewModelScope, SharingStarted.Lazily, null)
 
     val calendar = Calendar.getInstance()
     val currentDate = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT).format(calendar.time)

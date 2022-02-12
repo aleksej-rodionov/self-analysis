@@ -4,6 +4,7 @@ import android.graphics.Rect
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
+import android.view.ViewGroup
 import android.widget.CompoundButton
 import androidx.core.os.bundleOf
 import androidx.core.view.children
@@ -18,9 +19,11 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
 import space.rodionov.selfanalysis.R
 import space.rodionov.selfanalysis.databinding.FragmentAddEditNoteBinding
 import space.rodionov.selfanalysis.exhaustive
+import space.rodionov.selfanalysis.util.redrawViewGroup
 import java.text.DateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -136,6 +139,12 @@ class AddEditNoteFragment : Fragment(R.layout.fragment_add_edit_note), CompoundB
             }
         }
 
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            viewModel.mode.collectLatest {
+                val mode = it?: return@collectLatest
+                (binding.root as ViewGroup).redrawViewGroup(mode)
+            }
+        }
     }
 
     override fun onCheckedChanged(buttonView: CompoundButton, isChecked: Boolean) {
