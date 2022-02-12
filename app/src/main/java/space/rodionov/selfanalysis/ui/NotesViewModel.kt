@@ -29,6 +29,8 @@ class NotesViewModel @ViewModelInject constructor(
         private val preferencesRepository: PreferencesRepository,
         @Assisted private val state: SavedStateHandle
 ) : ViewModel() {
+    val _mode = preferencesRepository.modeFlow
+    val _followSystemMode = preferencesRepository.followSystemModeFlow
 
     private val allEmoList = listOf("Mad", "Glad,", "Lonely", "Scared", "Sad")
     private var emoFilterList = ArrayList<String>()

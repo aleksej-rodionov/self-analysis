@@ -21,6 +21,7 @@
         <TextView
             android:id="@+id/tv_add_edit_date"
             android:layout_width="match_parent"
+            android:tag="tv_beta"
             android:layout_height="wrap_content"
             android:layout_marginVertical="8dp"
             android:text="03.02.1991"
@@ -51,6 +52,7 @@
                         android:hint="@string/situation"
                         android:textColorHint="?android:textColorHint"
                         app:layout_constraintBottom_toBottomOf="@+id/spFromCurrency"
+                        android:textColor="@color/black"
                         app:layout_constraintEnd_toStartOf="@+id/spFromCurrency"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/spFromCurrency">
@@ -61,6 +63,7 @@
                         android:layout_height="wrap_content"
                         android:background="@color/colorWhite"
                         android:textSize="17sp"
+                        android:textColor="@color/black"
                         android:inputType="textMultiLine|textCapSentences"
                         android:padding="10dp"/>
 
@@ -86,9 +89,9 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentTop="true"
                             android:padding="8dp"
-                            android:textSize="17sp"
                             android:text="@string/feelings"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                            android:textSize="17sp" />
 
                         <EditText
                             android:id="@+id/et_feelings"
@@ -97,10 +100,11 @@
                             android:layout_below="@id/cg_emotions"
                             android:background="@color/colorWhite"
                             android:hint="@string/add_your_own"
-                            android:textSize="17sp"
-                            android:textColorHint="?android:textColorHint"
                             android:inputType="textMultiLine|textCapSentences"
-                            android:padding="8dp" />
+                            android:padding="8dp"
+                            android:textColor="@color/black"
+                            android:textColorHint="?android:textColorHint"
+                            android:textSize="17sp" />
 
                         <com.google.android.material.chip.ChipGroup
                             android:id="@+id/cg_emotions"
@@ -162,6 +166,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/in_the_body"
+                        android:textColor="@color/black"
                         android:textColorHint="?android:textColorHint"
                         app:layout_constraintBottom_toBottomOf="@+id/spFromCurrency"
                         app:layout_constraintEnd_toStartOf="@+id/spFromCurrency"
@@ -171,6 +176,7 @@
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/etInTheBody"
                             android:layout_width="match_parent"
+                            android:textColor="@color/black"
                             android:layout_height="wrap_content"
                             android:background="@color/colorWhite"
                             android:textSize="17sp"
@@ -197,11 +203,13 @@
                         android:textColorHint="?android:textColorHint"
                         app:layout_constraintBottom_toBottomOf="@+id/spFromCurrency"
                         app:layout_constraintEnd_toStartOf="@+id/spFromCurrency"
+                        android:textColor="@color/black"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/spFromCurrency">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/etWantedToDo"
+                            android:textColor="@color/black"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textSize="17sp"
@@ -224,6 +232,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/what_does_the_feeling_mean"
+                        android:textColor="@color/black"
                         android:layout_marginTop="3dp"
                         android:textColorHint="?android:textColorHint"
                         app:layout_constraintBottom_toBottomOf="@+id/spFromCurrency"
@@ -233,6 +242,7 @@
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/etWhatDoesTheFeelingMean"
+                            android:textColor="@color/black"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textSize="17sp"
@@ -256,6 +266,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="3dp"
                         android:hint="@string/thoughts"
+                        android:textColor="@color/black"
                         android:textColorHint="?android:textColorHint"
                         app:layout_constraintBottom_toBottomOf="@+id/spFromCurrency"
                         app:layout_constraintEnd_toStartOf="@+id/spFromCurrency"
@@ -265,6 +276,7 @@
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/etThoughts"
                             android:layout_width="match_parent"
+                            android:textColor="@color/black"
                             android:layout_height="wrap_content"
                             android:textSize="17sp"
                             android:background="@color/colorWhite"
@@ -289,6 +301,7 @@
                         android:layout_marginTop="3dp"
                         android:textColorHint="?android:textColorHint"
                         app:layout_constraintBottom_toBottomOf="@+id/spFromCurrency"
+                        android:textColor="@color/black"
                         app:layout_constraintEnd_toStartOf="@+id/spFromCurrency"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/spFromCurrency">
@@ -299,6 +312,7 @@
                             android:layout_height="wrap_content"
                             android:textSize="17sp"
                             android:background="@color/colorWhite"
+                            android:textColor="@color/black"
                             android:inputType="textMultiLine|textCapSentences"
                             android:padding="10dp"/>
 
@@ -316,6 +330,7 @@
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/black"
                         android:hint="@string/asking_from_hp"
                         android:layout_marginTop="3dp"
                         android:textColorHint="?android:textColorHint"
@@ -328,6 +343,7 @@
                             android:id="@+id/etAskingFromHp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:textColor="@color/black"
                             android:textSize="17sp"
                             android:background="@color/colorWhite"
                             android:inputType="textMultiLine|textCapSentences"
@@ -350,6 +366,7 @@
                         android:hint="@string/inner_critic"
                         android:layout_marginTop="3dp"
                         android:textColorHint="?android:textColorHint"
+                        android:textColor="@color/black"
                         app:layout_constraintBottom_toBottomOf="@+id/spFromCurrency"
                         app:layout_constraintEnd_toStartOf="@+id/spFromCurrency"
                         app:layout_constraintStart_toStartOf="parent"
@@ -359,6 +376,7 @@
                             android:id="@+id/etInnerCritic"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:textColor="@color/black"
                             android:textSize="17sp"
                             android:background="@color/colorWhite"
                             android:inputType="textMultiLine|textCapSentences"
@@ -381,6 +399,7 @@
                         android:layout_marginTop="3dp"
                         android:hint="@string/loving_parent"
                         android:textColorHint="?android:textColorHint"
+                        android:textColor="@color/black"
                         app:layout_constraintBottom_toBottomOf="@+id/spFromCurrency"
                         app:layout_constraintEnd_toStartOf="@+id/spFromCurrency"
                         app:layout_constraintStart_toStartOf="parent"
@@ -389,6 +408,7 @@
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/etLovingParent"
                             android:layout_width="match_parent"
+                            android:textColor="@color/black"
                             android:layout_height="wrap_content"
                             android:background="@color/colorWhite"
                             android:textSize="17sp"

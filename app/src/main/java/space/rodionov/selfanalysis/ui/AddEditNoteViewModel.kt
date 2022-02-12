@@ -10,13 +10,17 @@ import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import space.rodionov.selfanalysis.data.Note
 import space.rodionov.selfanalysis.data.NoteDao
+import space.rodionov.selfanalysis.data.PreferencesRepository
 import java.text.DateFormat
 import java.util.*
 
 class AddEditNoteViewModel @ViewModelInject constructor(
-        private val noteDao: NoteDao,
-        @Assisted private val state: SavedStateHandle
+    private val noteDao: NoteDao,
+    private val preferencesRepository: PreferencesRepository,
+    @Assisted private val state: SavedStateHandle
 ) : ViewModel() {
+    val _mode = preferencesRepository.modeFlow
+    val _followSystemMode = preferencesRepository.followSystemModeFlow
 
     val calendar = Calendar.getInstance()
     val currentDate = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT).format(calendar.time)

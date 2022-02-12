@@ -74,9 +74,37 @@ class PreferencesRepository @Inject constructor(@ApplicationContext context: Con
                 throw exception
             }
         }
-        .map {preferences ->
+        .map { preferences ->
             val filtered = preferences[PreferencesKeys.FILTER_ON] ?: false
             filtered
+        }
+
+    val modeFlow = dataStore.data
+        .catch { exception ->
+            if (exception is IOException) {
+                Log.e(TAG, "Error reading preferences", exception)
+                emit(emptyPreferences())
+            } else {
+                throw exception
+            }
+        }
+        .map { preferences ->
+            val mode = preferences[PreferencesKeys.MODE] ?: 0
+            mode
+        }
+
+    val followSystemModeFlow = dataStore.data
+        .catch { exception ->
+            if (exception is IOException) {
+                Log.e(TAG, "Error reading preferences", exception)
+                emit(emptyPreferences())
+            } else {
+                throw exception
+            }
+        }
+        .map { preferences ->
+            val follow = preferences[PreferencesKeys.FOLLOW_SYSTEM_MODE] ?: false
+            follow
         }
 
     suspend fun updateFilterOn(filterOn: Boolean) {
@@ -101,10 +129,26 @@ class PreferencesRepository @Inject constructor(@ApplicationContext context: Con
         }
     }
 
+    suspend fun updateMode(mode: Int) {
+        dataStore.edit { preferences ->
+            preferences[PreferencesKeys.MODE] = mode
+            Log.d(TAG, "New mode: $mode")
+        }
+    }
+
+    suspend fun updateMode(follow: Boolean) {
+        dataStore.edit { preferences ->
+            preferences[PreferencesKeys.FOLLOW_SYSTEM_MODE] = follow
+            Log.d(TAG, "NewFollowing system mode: $follow")
+        }
+    }
+
     private object PreferencesKeys {
         val EMOTION = preferencesKey<String>("emotion")
         val EMO_FILTER_JSON = preferencesKey<String>("emo_filter_list")
         val FILTER_ON = preferencesKey<Boolean>("filter_on")
+        val MODE = preferencesKey<Int>("mode")
+        val FOLLOW_SYSTEM_MODE = preferencesKey<Boolean>("follow_system_mode")
     }
 }
 

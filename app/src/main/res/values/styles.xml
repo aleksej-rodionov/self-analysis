@@ -20,4 +20,20 @@
         <item name="checkedIconEnabled">false</item>
         <item name="checkedIcon">@null</item>
     </style>
+
+    <style name="LightModeColors">
+        <item name="bg_main">@color/ACALight</item>
+        <item name="bg_beta">@color/white</item>
+        <item name="text_main">@color/gray900</item>
+        <item name="text_beta">@color/gray600</item>
+        <item name="bg_accent">@color/colorRed</item>
+    </style>
+
+    <style name="DarkModeColors">
+        <item name="bg_main">@color/gray900</item>
+        <item name="bg_beta">@color/gray850</item>
+        <item name="text_main">@color/gray100</item>
+        <item name="text_beta">@color/gray600</item>
+        <item name="bg_accent">@color/violet</item>
+    </style>
 </resources>

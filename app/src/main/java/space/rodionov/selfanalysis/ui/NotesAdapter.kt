@@ -7,8 +7,19 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import space.rodionov.selfanalysis.data.Note
 import space.rodionov.selfanalysis.databinding.RecyclerItemBinding
+import space.rodionov.selfanalysis.util.ModeAdapter
+import space.rodionov.selfanalysis.util.fetchColors
+import space.rodionov.selfanalysis.util.fetchTheme
+import space.rodionov.selfanalysis.util.redrawViewGroup
 
-class NotesAdapter(private val listener: OnItemClickListener) : ListAdapter<Note, NotesAdapter.NotesViewHolder>(NotesDiff()) {
+class NotesAdapter(private val listener: OnItemClickListener) : ListAdapter<Note, NotesAdapter.NotesViewHolder>(NotesDiff()),
+    ModeAdapter {
+
+    var modeNotesAdapter = 0
+
+    override fun updateMode(mode: Int) {
+        modeNotesAdapter = mode
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotesViewHolder {
         val binding = RecyclerItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -18,9 +29,18 @@ class NotesAdapter(private val listener: OnItemClickListener) : ListAdapter<Note
     override fun onBindViewHolder(holder: NotesViewHolder, position: Int) {
         val currentItem = getItem(position)
         holder.bind(currentItem)
+        holder.setMode(modeNotesAdapter)
     }
 
     inner class NotesViewHolder(private val binding: RecyclerItemBinding) : RecyclerView.ViewHolder(binding.root) {
+        var modeNotesViewHolder = 0
+            set(value) {
+                field = value
+                theme = fetchTheme(value, itemView.resources)
+                colors = fetchTheme(value, itemView.resources).fetchColors()
+            }
+        var theme = fetchTheme(modeNotesViewHolder, itemView.resources)
+        var colors = theme.fetchColors()
 
         init {
             binding.apply {
@@ -39,6 +59,11 @@ class NotesAdapter(private val listener: OnItemClickListener) : ListAdapter<Note
                 tvPreview.text = note.situation
                 tvMainDate.text = note.date.toString()
             }
+        }
+
+        fun setMode(mode: Int) {
+            modeNotesViewHolder = mode
+            if (itemView is ViewGroup) itemView.redrawViewGroup(mode)
         }
     }
 
