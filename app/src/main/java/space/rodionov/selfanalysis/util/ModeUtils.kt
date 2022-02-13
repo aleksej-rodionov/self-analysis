@@ -2,28 +2,22 @@ package space.rodionov.selfanalysis.util
 
 import android.content.res.ColorStateList
 import android.content.res.Resources
-import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.util.Log
 import android.util.TypedValue
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.RelativeLayout
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.widget.Toolbar
 import androidx.cardview.widget.CardView
 import androidx.coordinatorlayout.widget.CoordinatorLayout
-import androidx.core.content.ContextCompat
 import androidx.core.view.children
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import space.rodionov.selfanalysis.R
+import space.rodionov.selfanalysis.util.Constants.TAG_MODE
 
 //===========================FETCHING=========================================
 
@@ -89,14 +83,38 @@ fun fetchColors(mode: Int, res: Resources): Array<Int> {
 
 //===========================EXTENSIONS====================================
 
+fun LinearLayout.redrawLinear(mode: Int) {
+    Log.d(TAG_MODE, "redrawLinear: CALLED")
+    this.redrawViewGroup(mode)
+}
+
+fun ScrollView.redrawScrollView(mode: Int) {
+    Log.d(TAG_MODE, "redrawScrollView: CALLED")
+    this.redrawViewGroup(mode)
+}
+
 fun CardView.redrawCardView(colors: Array<Int>) {
-    this.setCardBackgroundColor(colors[1]) // todo
+    Log.d(TAG_MODE, "redrawCardView: CALLED")
+    this.setCardBackgroundColor(colors[1])
+    this.children.forEach {
+        if (it is TextInputLayout) it.redrawTIL(colors)
+    }
 }
 
 fun TextInputLayout.redrawTIL(colors: Array<Int>) {
-    this.children.forEach {
-        if (it is TextInputEditText) it.setTextColor(colors[2]) // todo
-    }
+    Log.d(TAG_MODE, "redrawTIL: CALLED")
+    this.editText?.setTextColor(colors[2])
+    this.editText?.backgroundTintList = null
+    this.editText?.backgroundTintList = ColorStateList.valueOf(colors[1])
+    this.defaultHintTextColor = ColorStateList.valueOf(colors[3])
+    this.hintTextColor = ColorStateList.valueOf(colors[4])
+}
+
+fun EditText.redrawET(colors: Array<Int>) {
+    this.backgroundTintList = null
+    this.backgroundTintList = ColorStateList.valueOf(colors[1])
+    this.setTextColor(colors[2])
+    this.setHintTextColor(colors[3])
 }
 
 fun TextView.redrawTextView(colors: Array<Int>) {
@@ -147,7 +165,7 @@ fun ViewGroup.redrawAllRecyclerAdapters(mode: Int) {
     this.children.forEach { child ->
         if (child is RecyclerView) {
             val adapter = child.adapter
-            if (adapter != null && adapter is ModeAdapter) {
+            if (adapter != null && adapter is ModeForAdapter) {
                 adapter.updateMode(mode)
             }
         }
@@ -160,6 +178,7 @@ fun Toolbar.redrawToolbar(colors: Array<Int>) {
 }
 
 fun ViewGroup.redrawViewGroup(mode: Int) {
+    Log.d(TAG_MODE, "redrawViewGroup: VG class = ${this.javaClass.toString()}")
 
     this.redrawAllRecyclerAdapters(mode)
 
@@ -175,20 +194,36 @@ fun ViewGroup.redrawViewGroup(mode: Int) {
         }
     }
 
-    if (this is Toolbar) this.redrawToolbar(colors)
-    if (this is TextView) this.redrawTextView(colors)
-    if (this is ImageView) this.redrawImageView(colors)
-    if (this is FloatingActionButton) this.redrawFAB(colors)
-    if (this is ChipGroup) this.redrawChips(colors)
-    if (this is TextInputLayout) this.redrawTIL(colors)
+    // Run through children:
+    this.children.forEach {
 
-//    if (this is ViewGroup) this.redrawViewGroup(mode)
+        if (it is Toolbar) it.redrawToolbar(colors)
+        if (it is TextView) it.redrawTextView(colors)
+        if (it is ImageView) it.redrawImageView(colors)
+        if (it is FloatingActionButton) it.redrawFAB(colors)
+        if (it is ChipGroup) it.redrawChips(colors)
+        if (it is TextInputLayout) it.redrawTIL(colors)
+        if (it is EditText) it.redrawET(colors)
+
+        if (it is CardView) {
+            it.redrawCardView(colors)
+            it.children.forEach { child->
+                if (child is RelativeLayout) {
+                    child.redrawViewGroup(mode)
+                }
+            }
+        }
+
+        if (it is LinearLayout) it.redrawLinear(mode)
+        if (it is ScrollView) it.redrawScrollView(mode)
+
+    }
 }
 
 //===========================EXTENSIONS==END====================================
 
 
-interface ModeAdapter {
+interface ModeForAdapter {
     fun updateMode(mode: Int)
 }
 

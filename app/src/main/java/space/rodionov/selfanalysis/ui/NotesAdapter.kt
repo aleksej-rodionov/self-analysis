@@ -7,13 +7,13 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import space.rodionov.selfanalysis.data.Note
 import space.rodionov.selfanalysis.databinding.RecyclerItemBinding
-import space.rodionov.selfanalysis.util.ModeAdapter
+import space.rodionov.selfanalysis.util.ModeForAdapter
 import space.rodionov.selfanalysis.util.fetchColors
 import space.rodionov.selfanalysis.util.fetchTheme
 import space.rodionov.selfanalysis.util.redrawViewGroup
 
 class NotesAdapter(private val listener: OnItemClickListener) : ListAdapter<Note, NotesAdapter.NotesViewHolder>(NotesDiff()),
-    ModeAdapter {
+    ModeForAdapter {
 
     var modeNotesAdapter = 0
 
