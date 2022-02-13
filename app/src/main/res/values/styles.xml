@@ -33,7 +33,7 @@
         <item name="bg_main">@color/gray900</item>
         <item name="bg_beta">@color/gray850</item>
         <item name="text_main">@color/gray100</item>
-        <item name="text_beta">@color/gray600</item>
-        <item name="bg_accent">@color/violet</item>
+        <item name="text_beta">@color/colorBeta</item>
+        <item name="bg_accent">@color/green</item>
     </style>
 </resources>

@@ -88,6 +88,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_alignParentTop="true"
+                            android:tag="tv_beta"
                             android:padding="8dp"
                             android:text="@string/feelings"
                             android:textAppearance="@style/TextAppearance.AppCompat.Medium"

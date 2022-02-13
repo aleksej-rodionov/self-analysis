@@ -140,7 +140,10 @@ fun CoordinatorLayout.redrawCoord(colors: Array<Int>) {
 }
 
 fun FloatingActionButton.redrawFAB(colors: Array<Int>) {
+    this.backgroundTintList = null
     this.backgroundTintList = ColorStateList.valueOf(colors[4])
+    this.imageTintList = null
+    this.imageTintList = ColorStateList.valueOf(resources.getColor(R.color.gray100))
 }
 
 fun ChipGroup.redrawChips(colors: Array<Int>) {
