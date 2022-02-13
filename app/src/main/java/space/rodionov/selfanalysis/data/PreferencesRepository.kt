@@ -136,7 +136,7 @@ class PreferencesRepository @Inject constructor(@ApplicationContext context: Con
         }
     }
 
-    suspend fun updateMode(follow: Boolean) {
+    suspend fun updateFollowSystemMode(follow: Boolean) {
         dataStore.edit { preferences ->
             preferences[PreferencesKeys.FOLLOW_SYSTEM_MODE] = follow
             Log.d(TAG, "NewFollowing system mode: $follow")

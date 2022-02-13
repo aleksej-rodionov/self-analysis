@@ -119,6 +119,10 @@ class NotesFragment : Fragment(R.layout.fragment_notes), NotesAdapter.OnItemClic
                     is NotesViewModel.NotesEvent.PickFileActivity -> {
                         filePickerActivityLauncher.launch(event.intent)
                     }
+                    is NotesViewModel.NotesEvent.NavigateToSettings -> {
+                        val action = NotesFragmentDirections.actionNotesFragmentToSettingsFragment()
+                        findNavController().navigate(action)
+                    }
                 }.exhaustive
             }
         }
@@ -209,16 +213,16 @@ class NotesFragment : Fragment(R.layout.fragment_notes), NotesAdapter.OnItemClic
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.action_export_to_csv -> {
-                viewModel.onExportToCSV(requireContext())
-                true
-            }
-            R.id.action_import_from_csv -> {
-                viewModel.onImportFromCSV(requireContext())
-                true
-            }
-            R.id.action_delete_all_notes -> {
-                viewModel.onDeleteAllClick()
+//            R.id.action_export_to_csv -> {
+//                viewModel.onExportToCSV(requireContext())
+//                true
+//            }
+//            R.id.action_import_from_csv -> {
+//                viewModel.onImportFromCSV(requireContext())
+//                true
+//            }
+            R.id.action_settings -> {
+                viewModel.onSettingsClicked()
                 true
             }
             R.id.action_no_filter -> {
@@ -243,6 +247,10 @@ class NotesFragment : Fragment(R.layout.fragment_notes), NotesAdapter.OnItemClic
             }
             R.id.action_filter_sad -> {
                     viewModel.onEmotionClick(requireContext().resources.getString((R.string.sad)))
+                true
+            }
+            R.id.action_delete_all_notes -> {
+                viewModel.onDeleteAllClick()
                 true
             }
             else -> super.onOptionsItemSelected(item)

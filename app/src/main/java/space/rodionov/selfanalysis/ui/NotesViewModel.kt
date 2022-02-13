@@ -185,6 +185,10 @@ class NotesViewModel @ViewModelInject constructor(
         notesEventChannel.send(NotesEvent.NavigateToDeleteAllScreen)
     }
 
+    fun onSettingsClicked() = viewModelScope.launch {
+        notesEventChannel.send(NotesEvent.NavigateToSettings)
+    }
+
     sealed class NotesEvent { //1
         object NavigateToAddNoteScreen : NotesEvent()
         data class NavigateToEditNoteScreen(val note: Note) : NotesEvent()
@@ -193,6 +197,7 @@ class NotesViewModel @ViewModelInject constructor(
         object NavigateToDeleteAllScreen : NotesEvent()
         data class GoToFileActivity(val intent: Intent): NotesEvent()
         data class PickFileActivity(val intent: Intent): NotesEvent()
+        object NavigateToSettings: NotesEvent()
     }
 
 }

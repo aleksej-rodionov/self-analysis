@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_notesFragment_to_addEditNoteFragment"
             app:destination="@id/addEditNoteFragment" />
+        <action
+            android:id="@+id/action_notesFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
     </fragment>
     <fragment
         android:id="@+id/addEditNoteFragment"
@@ -35,4 +38,9 @@
     <action
         android:id="@+id/action_global_deleteAllDialogFragment"
         app:destination="@id/deleteAllDialogFragment" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="space.rodionov.selfanalysis.ui.SettingsFragment"
+        android:label="@string/action_settings"
+        tools:layout="@layout/fragment_settings" />
 </navigation>

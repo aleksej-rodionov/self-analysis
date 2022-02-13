@@ -56,14 +56,14 @@ class MainActivity : AppCompatActivity() {
             0 -> {
                 window.statusBarColor = ContextCompat.getColor(this, R.color.ACARed)
                 window.navigationBarColor = ContextCompat.getColor(this, R.color.ACALight)
-                window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+//                window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
 
             }
             1 -> {
                 window.statusBarColor = ContextCompat.getColor(this, R.color.gray900)
                 window.navigationBarColor = ContextCompat.getColor(this, R.color.gray900)
-                window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE or
-                        View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR or View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+                window.decorView.systemUiVisibility = /*View.SYSTEM_UI_FLAG_LAYOUT_STABLE or
+                        */View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR or View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
 
                 val decorView = window.decorView
                 decorView.setSystemUiVisibility(decorView.getSystemUiVisibility() and View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR.inv())
@@ -71,7 +71,7 @@ class MainActivity : AppCompatActivity() {
             else -> {
                 window.statusBarColor = ContextCompat.getColor(this, R.color.ACARed)
                 window.navigationBarColor = ContextCompat.getColor(this, R.color.ACALight)
-                window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+//                window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
             }
         }
 //        }

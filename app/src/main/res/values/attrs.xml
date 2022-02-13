@@ -7,6 +7,7 @@
         <attr name="text_main" format="color"/>
         <attr name="text_beta" format="color"/>
         <attr name="bg_accent" format="color"/>
+        <attr name="bg_light" format="color"/>
     </declare-styleable>
 
 </resources>

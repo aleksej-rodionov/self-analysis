@@ -7,8 +7,10 @@ import android.util.Log
 import android.util.TypedValue
 import android.view.ViewGroup
 import android.widget.*
+import androidx.appcompat.widget.SwitchCompat
 import androidx.appcompat.widget.Toolbar
 import androidx.cardview.widget.CardView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.children
 import androidx.recyclerview.widget.RecyclerView
@@ -18,6 +20,15 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.textfield.TextInputLayout
 import space.rodionov.selfanalysis.R
 import space.rodionov.selfanalysis.util.Constants.TAG_MODE
+
+//===============================CONSTANTS==================================
+
+object ModeConstants {
+
+    const val MODE_LIGHT = 0
+    const val MODE_DARK = 1
+
+}
 
 //===========================FETCHING=========================================
 
@@ -64,12 +75,17 @@ fun Resources.Theme.fetchColors(): Array<Int> {
     this.resolveAttribute(R.attr.bg_accent, bgAccentValue, true)
     val bgAccent = bgAccentValue.data
 
+    val bgLightValue = TypedValue()
+    this.resolveAttribute(R.attr.bg_light, bgLightValue, true)
+    val bgLight = bgLightValue.data
+
     val colors = intArrayOf(
         bgMain,
         bgBeta,
         textMain,
         textBeta,
-        bgAccent
+        bgAccent,
+        bgLight
     )
     return colors.toTypedArray()
 }
@@ -139,6 +155,10 @@ fun CoordinatorLayout.redrawCoord(colors: Array<Int>) {
     this.setBackgroundColor(colors[0])
 }
 
+fun ConstraintLayout.redrawConstraint(colors: Array<Int>) {
+    this.setBackgroundColor(colors[0])
+}
+
 fun FloatingActionButton.redrawFAB(colors: Array<Int>) {
     this.backgroundTintList = null
     this.backgroundTintList = ColorStateList.valueOf(colors[4])
@@ -180,6 +200,24 @@ fun Toolbar.redrawToolbar(colors: Array<Int>) {
     this.setBackgroundDrawable(ColorDrawable(colors[4]))
 }
 
+fun SwitchCompat.redrawSwitch(colors: Array<Int>) {
+    this.setTextColor(colors[2])
+    val csl = ColorStateList(
+        arrayOf(
+            intArrayOf(-android.R.attr.state_checked),  // Unchecked
+            intArrayOf(android.R.attr.state_checked)    // Checked
+        ),
+        intArrayOf(
+            resources.getColor(R.color.gray600),     // The color for the Disabled state
+            colors[4]        // The color for the Enabled state
+        )
+    )
+    this.trackTintList = null
+    this.trackTintList = csl
+}
+
+//================================REDRAW VIEWGROUP=========================================
+
 fun ViewGroup.redrawViewGroup(mode: Int) {
     Log.d(TAG_MODE, "redrawViewGroup: VG class = ${this.javaClass.toString()}")
 
@@ -188,6 +226,7 @@ fun ViewGroup.redrawViewGroup(mode: Int) {
     val colors = fetchColors(mode, resources)
 
     if (this is CoordinatorLayout) this.redrawCoord(colors)
+    if (this is ConstraintLayout) this.redrawConstraint(colors)
     if (this is CardView) {
         this.redrawCardView(colors)
         this.children.forEach {
@@ -207,6 +246,7 @@ fun ViewGroup.redrawViewGroup(mode: Int) {
         if (it is ChipGroup) it.redrawChips(colors)
         if (it is TextInputLayout) it.redrawTIL(colors)
         if (it is EditText) it.redrawET(colors)
+        if (it is SwitchCompat) it.redrawSwitch(colors)
 
         if (it is CardView) {
             it.redrawCardView(colors)

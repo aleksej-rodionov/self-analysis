@@ -27,6 +27,7 @@
         <item name="text_main">@color/gray900</item>
         <item name="text_beta">@color/gray600</item>
         <item name="bg_accent">@color/colorRed</item>
+        <item name="bg_light">@color/gray400</item>
     </style>
 
     <style name="DarkModeColors">
@@ -35,5 +36,6 @@
         <item name="text_main">@color/gray100</item>
         <item name="text_beta">@color/colorBeta</item>
         <item name="bg_accent">@color/green</item>
+        <item name="bg_light">@color/gray800</item>
     </style>
 </resources>
