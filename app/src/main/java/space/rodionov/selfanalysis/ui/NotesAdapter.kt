@@ -15,11 +15,17 @@ import space.rodionov.selfanalysis.util.redrawViewGroup
 class NotesAdapter(private val listener: OnItemClickListener) : ListAdapter<Note, NotesAdapter.NotesViewHolder>(NotesDiff()),
     ModeForAdapter {
 
+    companion object {
+        const val TAG_NOTES_ADAPTER = "notesAdapter"
+    }
+
     var modeNotesAdapter = 0
 
     override fun updateMode(mode: Int) {
         modeNotesAdapter = mode
     }
+
+    override fun getTag(): String = TAG_NOTES_ADAPTER
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotesViewHolder {
         val binding = RecyclerItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)

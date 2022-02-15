@@ -44,7 +44,11 @@ class SettingsFragment: Fragment(R.layout.fragment_settings) {
                     switchMode.isChecked = mode == MODE_DARK
                     switchMode.setOnCheckedChangeListener { _, isChecked ->
                         val modeId = if (isChecked) MODE_DARK else MODE_LIGHT
-                        vmSettings.updateMode(modeId)
+                        vmSettings.followSystemMode.value?.let { follow ->
+                            if (!follow) {
+                                vmSettings.updateMode(modeId)
+                            }
+                        }
                     }
                 }
             }

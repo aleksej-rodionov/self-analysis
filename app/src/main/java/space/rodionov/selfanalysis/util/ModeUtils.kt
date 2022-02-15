@@ -189,6 +189,7 @@ fun ViewGroup.redrawAllRecyclerAdapters(mode: Int) {
         if (child is RecyclerView) {
             val adapter = child.adapter
             if (adapter != null && adapter is ModeForAdapter) {
+                Log.d(TAG_MODE, "redrawAllRecyclerAdapters: adapter tag = ${adapter.getTag()}, mode = $mode")
                 adapter.updateMode(mode)
             }
         }
@@ -268,6 +269,8 @@ fun ViewGroup.redrawViewGroup(mode: Int) {
 
 interface ModeForAdapter {
     fun updateMode(mode: Int)
+
+    fun getTag() : String
 }
 
 

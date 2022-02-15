@@ -1,8 +1,10 @@
 package space.rodionov.selfanalysis.ui
 
 import android.app.Activity
+import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.viewModels
@@ -17,6 +19,9 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import space.rodionov.selfanalysis.R
 import space.rodionov.selfanalysis.databinding.ActivityMainBinding
+import space.rodionov.selfanalysis.util.Constants.TAG_MODE
+import space.rodionov.selfanalysis.util.ModeConstants.MODE_DARK
+import space.rodionov.selfanalysis.util.ModeConstants.MODE_LIGHT
 import space.rodionov.selfanalysis.util.fetchColors
 import space.rodionov.selfanalysis.util.redrawViewGroup
 
@@ -48,6 +53,27 @@ class MainActivity : AppCompatActivity() {
                 (binding.root as ViewGroup).redrawViewGroup(mode)
             }
         }
+
+        this.lifecycleScope.launchWhenStarted {
+            viewModel.followSystemMode.collectLatest {
+                val follow = it?: return@collectLatest
+                if (follow) viewModel.updateMode(getSystemTheme())
+            }
+        }
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        Log.d(TAG_MODE, "onConfigurationChanged: followSM = ${viewModel.checkFollowingSystemTheme()}")
+        if (viewModel.checkFollowingSystemTheme()) viewModel.updateMode(getSystemTheme())
+    }
+
+    private fun getSystemTheme() :Int {
+        return when (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+            Configuration.UI_MODE_NIGHT_YES -> MODE_DARK
+            Configuration.UI_MODE_NIGHT_NO -> MODE_LIGHT
+            else -> MODE_LIGHT
+        }
     }
 
     private fun setSystemBarsColors(mode: Int) {
@@ -60,7 +86,7 @@ class MainActivity : AppCompatActivity() {
 
             }
             1 -> {
-                window.statusBarColor = ContextCompat.getColor(this, R.color.gray900)
+                window.statusBarColor = ContextCompat.getColor(this, R.color.green)
                 window.navigationBarColor = ContextCompat.getColor(this, R.color.gray900)
                 window.decorView.systemUiVisibility = /*View.SYSTEM_UI_FLAG_LAYOUT_STABLE or
                         */View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR or View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
