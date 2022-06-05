@@ -1,8 +1,13 @@
 
 
 
+current task:
+
+    - viewModels and composables
+
 next:
 
-    - versions of the dependencies
+    - language change functionality
+    - Koin instead of Hilt
 
 

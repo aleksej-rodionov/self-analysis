@@ -1,4 +1,4 @@
-package space.rodionov.selfanalysis.ui
+package space.rodionov.selfanalysis.feature_self_analysis.presentation
 
 import android.app.Activity
 import android.content.res.Configuration
@@ -7,16 +7,24 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toDrawable
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupActionBarWithNavController
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
+import space.rodionov.porosenokpetr.ui_compose.theme.SelfAnalysisTheme
 import space.rodionov.selfanalysis.R
 import space.rodionov.selfanalysis.databinding.ActivityMainBinding
 import space.rodionov.selfanalysis.util.Constants.TAG_MODE
@@ -28,15 +36,28 @@ import space.rodionov.selfanalysis.util.redrawViewGroup
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var navController: NavController
-
-    private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
-
-    private val viewModel: MainViewModel by viewModels()
-
+    @ExperimentalAnimationApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContent {
+            SelfAnalysisTheme {
+                androidx.compose.material.Surface(
+                    color =MaterialTheme.colors.background
+                ) {
+                    val navController = rememberNavController()
+                    NavHost(
+                        navController = navController,
+                        startDestination = Screen.AnalysisListScreen.route
+                    ) {
+                        composable(
+                            route =Screen.AnalysisListScreen.route
+                        ) {
+                            AnalysisListScreen(navController = navController)
+                        }
+                    }
+                }
+            }
+        }
 
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment

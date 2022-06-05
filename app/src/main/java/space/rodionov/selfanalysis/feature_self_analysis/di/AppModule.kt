@@ -8,7 +8,6 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
-import space.rodionov.selfanalysis.ApplicationScope
 import space.rodionov.selfanalysis.data.NoteDatabase
 import space.rodionov.selfanalysis.feature_self_analysis.data.local.AnalysisDatabase
 import space.rodionov.selfanalysis.feature_self_analysis.data.preferences.PrefStore
@@ -17,7 +16,6 @@ import space.rodionov.selfanalysis.feature_self_analysis.data.repository.Analysi
 import space.rodionov.selfanalysis.feature_self_analysis.data.repository.PrefRepoImpl
 import space.rodionov.selfanalysis.feature_self_analysis.domain.manager.AnalysisManager
 import space.rodionov.selfanalysis.feature_self_analysis.domain.manager.PrefManager
-import space.rodionov.selfanalysis.feature_self_analysis.domain.model.Analysis
 import space.rodionov.selfanalysis.feature_self_analysis.domain.repository.AnalysisRepo
 import space.rodionov.selfanalysis.feature_self_analysis.domain.repository.PrefRepo
 import javax.inject.Qualifier
