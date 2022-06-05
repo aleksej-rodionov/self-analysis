@@ -1,10 +1,11 @@
-package space.rodionov.selfanalysis.data
+package space.rodionov.selfanalysis.feature_self_analysis.data.local
 
 import androidx.room.*
 import kotlinx.coroutines.flow.Flow
+import space.rodionov.selfanalysis.data.Note
 
 @Dao
-interface NoteDao {
+interface AnalysisDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(note: Note)
@@ -36,5 +37,4 @@ interface NoteDao {
 
     @Query("SELECT * FROM note_table ORDER BY id DESC")
     fun getAllNotes(): Flow<List<Note>>
-
 }

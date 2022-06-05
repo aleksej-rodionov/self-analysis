@@ -18,8 +18,8 @@ android {
         applicationId "space.rodionov.selfanalysis"
         minSdkVersion 23
         targetSdkVersion 30
-        versionCode 13
-        versionName "2.4"
+        versionCode 14
+        versionName "2.5"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
