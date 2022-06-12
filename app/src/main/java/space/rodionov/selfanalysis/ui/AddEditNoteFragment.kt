@@ -1,3 +1,4 @@
+/*
 package space.rodionov.selfanalysis.ui
 
 import android.graphics.Rect
@@ -62,7 +63,9 @@ class AddEditNoteFragment : Fragment(R.layout.fragment_add_edit_note), CompoundB
             etLovingParent.setText(viewModel.noteLovingParent)
 //            tvAddEditDate.isVisible = viewModel.note != null
             if (viewModel.note != null) {
-                tvAddEditDate.text = "${requireContext().resources.getString(R.string.date_created)} ${viewModel.note?.date/*Formatted*/}"
+                tvAddEditDate.text = "${requireContext().resources.getString(R.string.date_created)} ${viewModel.note?.date*/
+/*Formatted*//*
+}"
             } else {
                 tvAddEditDate.text = currentDate
             }
@@ -170,3 +173,4 @@ class AddEditNoteFragment : Fragment(R.layout.fragment_add_edit_note), CompoundB
 
 
 
+*/

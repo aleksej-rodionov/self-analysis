@@ -1,12 +1,14 @@
 package space.rodionov.selfanalysis.feature_self_analysis.presentation.analysis_list
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -22,6 +24,7 @@ fun AnalysisListScreen(
 ) {
     val scaffoldState = rememberScaffoldState()
     val state = viewModel.state.value
+    val scope = rememberCoroutineScope()
 
     Scaffold(
         scaffoldState = scaffoldState,
@@ -62,14 +65,28 @@ fun AnalysisListScreen(
                         if(i > 0) {
                             Spacer(modifier = Modifier.height(8.dp))
                         }
-                        AnalysisItem(analysis = analysis)
+                        AnalysisItem(
+                            analysis = analysis,
+                            modifier = Modifier.fillMaxWidth()
+                                .clickable {
+                                    navController.navigate(
+                                        Screen.EditAddAnalysisScreen.route +
+                                        "?analysisId=${analysis.id}"
+                                    )
+                                }
+                        )
                         if(i < state.analysisList.size - 1) {
                             Divider()
                         }
                     }
                 }
                 if(state.isLoading) {
-                    CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
+                    Box(
+                        contentAlignment = Alignment.Center,
+                        modifier = Modifier.fillMaxSize()
+                    ) {
+                        CircularProgressIndicator()
+                    }
                 }
             }
         }

@@ -1,3 +1,4 @@
+/*
 package space.rodionov.selfanalysis.ui
 
 import androidx.hilt.Assisted
@@ -12,7 +13,6 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import space.rodionov.selfanalysis.data.Note
 import space.rodionov.selfanalysis.data.NoteDao
-import space.rodionov.selfanalysis.data.PreferencesRepository
 import java.text.DateFormat
 import java.util.*
 
@@ -176,3 +176,4 @@ class AddEditNoteViewModel @ViewModelInject constructor(
 
 
 
+*/

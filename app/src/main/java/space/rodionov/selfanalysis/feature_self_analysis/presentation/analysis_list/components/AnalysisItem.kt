@@ -25,7 +25,7 @@ fun AnalysisItem(
 ) {
 
     Row(
-        modifier = Modifier
+        modifier = modifier
     ) {
         Text(
             modifier = Modifier.fillMaxWidth(),

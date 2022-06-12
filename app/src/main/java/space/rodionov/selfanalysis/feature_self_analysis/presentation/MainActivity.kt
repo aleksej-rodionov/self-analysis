@@ -27,6 +27,7 @@ import kotlinx.coroutines.flow.collectLatest
 import space.rodionov.porosenokpetr.ui_compose.theme.SelfAnalysisTheme
 import space.rodionov.selfanalysis.R
 import space.rodionov.selfanalysis.databinding.ActivityMainBinding
+import space.rodionov.selfanalysis.feature_self_analysis.presentation.analysis_list.AnalysisListScreen
 import space.rodionov.selfanalysis.util.Constants.TAG_MODE
 import space.rodionov.selfanalysis.util.ModeConstants.MODE_DARK
 import space.rodionov.selfanalysis.util.ModeConstants.MODE_LIGHT
@@ -39,9 +40,10 @@ class MainActivity : AppCompatActivity() {
     @ExperimentalAnimationApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContent {
             SelfAnalysisTheme {
-                androidx.compose.material.Surface(
+                Surface(
                     color =MaterialTheme.colors.background
                 ) {
                     val navController = rememberNavController()
@@ -50,7 +52,7 @@ class MainActivity : AppCompatActivity() {
                         startDestination = Screen.AnalysisListScreen.route
                     ) {
                         composable(
-                            route =Screen.AnalysisListScreen.route
+                            route = Screen.AnalysisListScreen.route
                         ) {
                             AnalysisListScreen(navController = navController)
                         }
@@ -59,43 +61,43 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        val navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        navController = navHostFragment.findNavController()
-
-        setupActionBarWithNavController(navController)
-
-        this.lifecycleScope.launchWhenStarted {
-            viewModel.mode.collectLatest {
-                val mode = it?: return@collectLatest
-                setSystemBarsColors(mode)
-                val colors = fetchColors(mode, resources)
-                supportActionBar?.setBackgroundDrawable(colors[4].toDrawable())
-                (binding.root as ViewGroup).redrawViewGroup(mode)
-            }
-        }
-
-        this.lifecycleScope.launchWhenStarted {
-            viewModel.followSystemMode.collectLatest {
-                val follow = it?: return@collectLatest
-                if (follow) viewModel.updateMode(getSystemTheme())
-            }
-        }
+//        val navHostFragment =
+//            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+//        navController = navHostFragment.findNavController()
+//
+//        setupActionBarWithNavController(navController)
+//
+//        this.lifecycleScope.launchWhenStarted {
+//            viewModel.mode.collectLatest {
+//                val mode = it?: return@collectLatest
+//                setSystemBarsColors(mode)
+//                val colors = fetchColors(mode, resources)
+//                supportActionBar?.setBackgroundDrawable(colors[4].toDrawable())
+//                (binding.root as ViewGroup).redrawViewGroup(mode)
+//            }
+//        }
+//
+//        this.lifecycleScope.launchWhenStarted {
+//            viewModel.followSystemMode.collectLatest {
+//                val follow = it?: return@collectLatest
+//                if (follow) viewModel.updateMode(getSystemTheme())
+//            }
+//        }
     }
 
-    override fun onConfigurationChanged(newConfig: Configuration) {
-        super.onConfigurationChanged(newConfig)
-        Log.d(TAG_MODE, "onConfigurationChanged: followSM = ${viewModel.checkFollowingSystemTheme()}")
-        if (viewModel.checkFollowingSystemTheme()) viewModel.updateMode(getSystemTheme())
-    }
-
-    private fun getSystemTheme() :Int {
-        return when (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
-            Configuration.UI_MODE_NIGHT_YES -> MODE_DARK
-            Configuration.UI_MODE_NIGHT_NO -> MODE_LIGHT
-            else -> MODE_LIGHT
-        }
-    }
+//    override fun onConfigurationChanged(newConfig: Configuration) {
+//        super.onConfigurationChanged(newConfig)
+//        Log.d(TAG_MODE, "onConfigurationChanged: followSM = ${viewModel.checkFollowingSystemTheme()}")
+//        if (viewModel.checkFollowingSystemTheme()) viewModel.updateMode(getSystemTheme())
+//    }
+//
+//    private fun getSystemTheme() :Int {
+//        return when (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+//            Configuration.UI_MODE_NIGHT_YES -> MODE_DARK
+//            Configuration.UI_MODE_NIGHT_NO -> MODE_LIGHT
+//            else -> MODE_LIGHT
+//        }
+//    }
 
     private fun setSystemBarsColors(mode: Int) {
 //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -124,13 +126,13 @@ class MainActivity : AppCompatActivity() {
 //        }
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        return navController.navigateUp() || super.onSupportNavigateUp()
-    }
+//    override fun onSupportNavigateUp(): Boolean {
+//        return navController.navigateUp() || super.onSupportNavigateUp()
+//    }
 }
 
-const val ADD_TASK_RESULT_OK = Activity.RESULT_FIRST_USER
-const val EDIT_TASK_RESULT_OK = Activity.RESULT_FIRST_USER + 1
+//const val ADD_TASK_RESULT_OK = Activity.RESULT_FIRST_USER
+//const val EDIT_TASK_RESULT_OK = Activity.RESULT_FIRST_USER + 1
 
 
 

@@ -11,11 +11,13 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 import space.rodionov.selfanalysis.feature_self_analysis.domain.manager.AnalysisManager
+import space.rodionov.selfanalysis.feature_self_analysis.domain.manager.PrefManager
 import javax.inject.Inject
 
 @HiltViewModel
 class AnalysisListViewModel @Inject constructor(
-    private val analysisManager: AnalysisManager
+    private val analysisManager: AnalysisManager,
+    private val prefManager: PrefManager
 ) : ViewModel() {
 
     private val _searchQuery = mutableStateOf("")
@@ -34,7 +36,7 @@ class AnalysisListViewModel @Inject constructor(
         searchJob?.cancel()
         searchJob = viewModelScope.launch {
             delay(700L)
-            analysisManager.
+            analysisManager.getAnalysisBy(query, "") // todo implement emotion filter
         }
     }
 

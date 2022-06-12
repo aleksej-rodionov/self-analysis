@@ -26,7 +26,7 @@ import space.rodionov.selfanalysis.databinding.FragmentNotesBinding
 import space.rodionov.selfanalysis.exhaustive
 import space.rodionov.selfanalysis.onQueryTextChanged
 import space.rodionov.selfanalysis.util.redrawViewGroup
-
+/*
 @AndroidEntryPoint
 class NotesFragment : Fragment(R.layout.fragment_notes), NotesAdapter.OnItemClickListener {
 
@@ -180,7 +180,7 @@ class NotesFragment : Fragment(R.layout.fragment_notes), NotesAdapter.OnItemClic
             viewModel.searchQuery.value = it
         }
 
-        /*viewLifecycleOwner.lifecycleScope.launch {
+        *//*viewLifecycleOwner.lifecycleScope.launch {
             menu.findItem(R.id.action_filtered).isChecked =
                 viewModel.filtFlow.first()
         }
@@ -207,7 +207,7 @@ class NotesFragment : Fragment(R.layout.fragment_notes), NotesAdapter.OnItemClic
         viewLifecycleOwner.lifecycleScope.launch {
             menu.findItem(R.id.action_filtered).isChecked =
                 viewModel.filtFlow.first()
-        }*/
+        }*//*
 
     }
 
@@ -262,7 +262,7 @@ class NotesFragment : Fragment(R.layout.fragment_notes), NotesAdapter.OnItemClic
         searchView.setOnQueryTextListener(null)
     }
 
-}
+}*/
 
 //R.id.action_filter_mad -> {
 //    item.isChecked = !item.isChecked

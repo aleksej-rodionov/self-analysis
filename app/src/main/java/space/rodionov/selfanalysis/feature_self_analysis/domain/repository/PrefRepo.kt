@@ -6,7 +6,7 @@ interface PrefRepo {
 
     fun emotionFlow() : Flow<String>
 
-    fun modeFLow( ):Flow<Int>
+    fun modeFlow( ):Flow<Int>
 
     fun followSystemMode(): Flow <Boolean>
 

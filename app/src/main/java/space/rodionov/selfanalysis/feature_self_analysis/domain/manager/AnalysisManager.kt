@@ -26,17 +26,16 @@ class AnalysisManager(
     }
 
     fun getAllAnalysis(): Flow<List<Analysis>> {
-
-
+        return analysisRepo.getAllAnalysis()
     }
 
     fun getAnalysisBy(
         searchQuery: String,
         emotionFilter: String
     ): Flow<List<Analysis>> {
-
-
+        return analysisRepo.getAnalysisBy(
+            searchQuery, emotionFilter
+        )
     }
-
 
 }

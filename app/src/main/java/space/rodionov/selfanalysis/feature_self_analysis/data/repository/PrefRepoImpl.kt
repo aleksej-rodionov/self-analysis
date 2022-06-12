@@ -12,7 +12,7 @@ class PrefRepoImpl(
         return prefStore.emotionFlow()
     }
 
-    override fun modeFLow(): Flow<Int> {
+    override fun modeFlow(): Flow<Int> {
         return prefStore.modeFlow()
     }
 
