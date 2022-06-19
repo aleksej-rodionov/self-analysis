@@ -1,35 +1,45 @@
 package space.rodionov.selfanalysis.feature_self_analysis.data.repository
 
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
+import space.rodionov.selfanalysis.feature_self_analysis.data.local.AnalysisDao
 import space.rodionov.selfanalysis.feature_self_analysis.data.local.AnalysisDatabase
 import space.rodionov.selfanalysis.feature_self_analysis.domain.model.Analysis
 import space.rodionov.selfanalysis.feature_self_analysis.domain.repository.AnalysisRepo
 
 class AnalysisRepoImpl(
-    private val analysisDatabase: AnalysisDatabase
+    private val analysisDao: AnalysisDao
 ): AnalysisRepo {
 
     override suspend fun deleteAnalysis(analysis: Analysis) {
-        TODO("Not yet implemented")
+        analysisDao.delete(analysis.toAnalysisEntity())
     }
 
     override suspend fun updateAnalysis(analysis: Analysis) {
-        TODO("Not yet implemented")
+        analysisDao.update(analysis.toAnalysisEntity())
     }
 
     override suspend fun insertAnalysis(analysis: Analysis) {
-        TODO("Not yet implemented")
+        analysisDao.insert(analysis.toAnalysisEntity())
     }
 
     override suspend fun deleteAll() {
-        TODO("Not yet implemented")
+        analysisDao.deleteAll()
     }
 
     override fun getAllAnalysis(): Flow<List<Analysis>> {
-        TODO("Not yet implemented")
+       return analysisDao.getAllNotes().map { list ->
+           list.map {
+               it.toAnalysis()
+           }
+       }
     }
 
     override fun getAnalysisBy(searchQuery: String, emotionFilter: String): Flow<List<Analysis>> {
-        TODO("Not yet implemented")
+        return analysisDao.getNotes(searchQuery, emotionFilter).map { list ->
+            list.map {
+                it.toAnalysis()
+            }
+        }
     }
 }

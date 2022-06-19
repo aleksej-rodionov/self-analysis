@@ -2,45 +2,45 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph"
-    app:startDestination="@id/notesFragment">
+    android:id="@+id/nav_graph">
+<!--    app:startDestination="@id/notesFragment"-->
 
-    <fragment
-        android:id="@+id/notesFragment"
-        android:name="space.rodionov.selfanalysis.ui.NotesFragment"
-        android:label="Notes"
-        tools:layout="@layout/fragment_notes">
-        <action
-            android:id="@+id/action_notesFragment_to_addEditNoteFragment"
-            app:destination="@id/addEditNoteFragment" />
-        <action
-            android:id="@+id/action_notesFragment_to_settingsFragment"
-            app:destination="@id/settingsFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/addEditNoteFragment"
-        android:name="space.rodionov.selfanalysis.ui.AddEditNoteFragment"
-        android:label="{title}"
-        tools:layout="@layout/fragment_add_edit_note">
-        <argument
-            android:name="note"
-            android:defaultValue="@null"
-            app:argType="space.rodionov.selfanalysis.data.Note"
-            app:nullable="true" />
-        <argument
-            android:name="title"
-            app:argType="string" />
-    </fragment>
-    <dialog
-        android:id="@+id/deleteAllDialogFragment"
-        android:name="space.rodionov.selfanalysis.ui.DeleteAllDialogFragment"
-        android:label="DeleteAllDialogFragment" />
-    <action
-        android:id="@+id/action_global_deleteAllDialogFragment"
-        app:destination="@id/deleteAllDialogFragment" />
-    <fragment
-        android:id="@+id/settingsFragment"
-        android:name="space.rodionov.selfanalysis.ui.SettingsFragment"
-        android:label="@string/action_settings"
-        tools:layout="@layout/fragment_settings" />
+<!--    <fragment-->
+<!--        android:id="@+id/notesFragment"-->
+<!--        android:name="space.rodionov.selfanalysis.ui.NotesFragment"-->
+<!--        android:label="Notes"-->
+<!--        tools:layout="@layout/fragment_notes">-->
+<!--        <action-->
+<!--            android:id="@+id/action_notesFragment_to_addEditNoteFragment"-->
+<!--            app:destination="@id/addEditNoteFragment" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_notesFragment_to_settingsFragment"-->
+<!--            app:destination="@id/settingsFragment" />-->
+<!--    </fragment>-->
+<!--    <fragment-->
+<!--        android:id="@+id/addEditNoteFragment"-->
+<!--        android:name="space.rodionov.selfanalysis.ui.AddEditNoteFragment"-->
+<!--        android:label="{title}"-->
+<!--        tools:layout="@layout/fragment_add_edit_note">-->
+<!--        <argument-->
+<!--            android:name="note"-->
+<!--            android:defaultValue="@null"-->
+<!--            app:argType="space.rodionov.selfanalysis.data.Note"-->
+<!--            app:nullable="true" />-->
+<!--        <argument-->
+<!--            android:name="title"-->
+<!--            app:argType="string" />-->
+<!--    </fragment>-->
+<!--    <dialog-->
+<!--        android:id="@+id/deleteAllDialogFragment"-->
+<!--        android:name="space.rodionov.selfanalysis.ui.DeleteAllDialogFragment"-->
+<!--        android:label="DeleteAllDialogFragment" />-->
+<!--    <action-->
+<!--        android:id="@+id/action_global_deleteAllDialogFragment"-->
+<!--        app:destination="@id/deleteAllDialogFragment" />-->
+<!--    <fragment-->
+<!--        android:id="@+id/settingsFragment"-->
+<!--        android:name="space.rodionov.selfanalysis.ui.SettingsFragment"-->
+<!--        android:label="@string/action_settings"-->
+<!--        tools:layout="@layout/fragment_settings" />-->
 </navigation>

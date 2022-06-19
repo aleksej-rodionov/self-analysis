@@ -8,7 +8,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
-import space.rodionov.selfanalysis.data.NoteDatabase
+import space.rodionov.selfanalysis.feature_self_analysis.data.local.AnalysisDao
 import space.rodionov.selfanalysis.feature_self_analysis.data.local.AnalysisDatabase
 import space.rodionov.selfanalysis.feature_self_analysis.data.preferences.PrefStore
 import space.rodionov.selfanalysis.feature_self_analysis.data.preferences.PrefStoreJetPack
@@ -43,8 +43,8 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideAnalysisRepo(analysisDb: AnalysisDatabase): AnalysisRepo =
-        AnalysisRepoImpl(analysisDb)
+    fun provideAnalysisRepo(analysisDao: AnalysisDao): AnalysisRepo =
+        AnalysisRepoImpl(analysisDao)
 
     @Provides
     @Singleton
@@ -54,7 +54,7 @@ object AppModule {
     @Singleton
     fun provideDatabase(
         app: Application,
-        callback: NoteDatabase.Callback
+        callback: AnalysisDatabase.Callback
     ) = Room.databaseBuilder(app, AnalysisDatabase::class.java, "analysis_database")
         .fallbackToDestructiveMigration()
         .addCallback(callback)

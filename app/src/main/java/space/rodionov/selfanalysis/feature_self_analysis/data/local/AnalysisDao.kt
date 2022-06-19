@@ -8,18 +8,18 @@ import space.rodionov.selfanalysis.data.Note
 interface AnalysisDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(note: Note)
+    suspend fun insert(analysis: AnalysisEntity)
 
     @Update
-    suspend fun update(note: Note)
+    suspend fun update(analysis: AnalysisEntity)
 
     @Delete
-    suspend fun delete(note: Note)
+    suspend fun delete(analysis: AnalysisEntity)
 
-    @Query("DELETE FROM note_table")
+    @Query("DELETE FROM analysis_table")
     suspend fun deleteAll()
 
-    @Query("SELECT * FROM note_table WHERE (date LIKE '%' || :searchQuery || '%' " +
+    @Query("SELECT * FROM analysis_table WHERE (date LIKE '%' || :searchQuery || '%' " +
             " OR situation LIKE '%' || :searchQuery || '%' " +
             " OR emotions LIKE '%' || :searchQuery || '%'" +
             " OR feelings LIKE '%' || :searchQuery || '%' " +
@@ -33,8 +33,9 @@ interface AnalysisDao {
             " OR lovingParent LIKE '%' || :searchQuery || '%') " +
             " AND emotions LIKE '%' || :emotionFilter || '%'" +
             "ORDER BY id DESC")
-    fun getNotes(searchQuery: String, emotionFilter: String): Flow<List<Note>>
 
-    @Query("SELECT * FROM note_table ORDER BY id DESC")
-    fun getAllNotes(): Flow<List<Note>>
+    fun getNotes(searchQuery: String, emotionFilter: String): Flow<List<AnalysisEntity>>
+
+    @Query("SELECT * FROM analysis_table ORDER BY id DESC")
+    fun getAllNotes(): Flow<List<AnalysisEntity>>
 }

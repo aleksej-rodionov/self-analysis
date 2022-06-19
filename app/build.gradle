@@ -53,7 +53,7 @@ android {
     }
     composeOptions {
         kotlinCompilerExtensionVersion '1.1.1'
-        kotlinCompilerVersion '1.5.31'
+        kotlinCompilerVersion '1.6.10'
     }
     packagingOptions {
         resources {
@@ -140,6 +140,6 @@ repositories {
     mavenCentral()
 }
 
-//kapt {
-//    correctErrorTypes true
-//}
+kapt {
+    correctErrorTypes true
+}

@@ -5,7 +5,7 @@ import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
-import space.rodionov.selfanalysis.ApplicationScope
+import space.rodionov.selfanalysis.feature_self_analysis.di.ApplicationScope
 import javax.inject.Inject
 import javax.inject.Provider
 
