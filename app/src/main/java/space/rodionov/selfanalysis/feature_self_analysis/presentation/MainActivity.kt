@@ -37,7 +37,6 @@ import space.rodionov.selfanalysis.util.redrawViewGroup
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    @ExperimentalAnimationApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

@@ -7,7 +7,6 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
-import space.rodionov.selfanalysis.data.NoteDatabase
 import javax.inject.Qualifier
 import javax.inject.Singleton
 

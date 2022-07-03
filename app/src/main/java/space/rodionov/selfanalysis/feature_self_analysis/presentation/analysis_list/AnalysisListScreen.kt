@@ -1,5 +1,7 @@
 package space.rodionov.selfanalysis.feature_self_analysis.presentation.analysis_list
 
+import android.util.Log
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -17,6 +19,7 @@ import androidx.navigation.NavController
 import space.rodionov.selfanalysis.feature_self_analysis.domain.model.Analysis
 import space.rodionov.selfanalysis.feature_self_analysis.presentation.Screen
 
+//@ExperimentalAnimationApi
 @Composable
 fun AnalysisListScreen(
     navController: NavController,
@@ -49,8 +52,11 @@ fun AnalysisListScreen(
                     .padding(16.dp)
             ) {
                 TextField(
-                    value = viewModel.searchQuery.value,
-                    onValueChange = viewModel::onSearch,
+                    value = "viewModel.searchQuery.value",
+                    onValueChange = viewModel::onSearch, //{
+//                        Log.d("HUJ", "AnalysisListScreen: onvaluechange = $it")
+
+//                                    },
                     modifier = Modifier.fillMaxWidth(),
                     placeholder = {
                         Text(text = "Search...")

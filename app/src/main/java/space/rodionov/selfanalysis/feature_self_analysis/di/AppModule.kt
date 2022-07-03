@@ -27,18 +27,6 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun providePrefManager(prefRepo: PrefRepo): PrefManager {
-        return PrefManager(prefRepo)
-    }
-
-    @Provides
-    @Singleton
-    fun provideAnalysisManager(analysisRepo: AnalysisRepo): AnalysisManager {
-        return AnalysisManager(analysisRepo)
-    }
-
-    @Provides
-    @Singleton
     fun providePrefRepo(prefStore: PrefStore): PrefRepo = PrefRepoImpl(prefStore)
 
     @Provides
