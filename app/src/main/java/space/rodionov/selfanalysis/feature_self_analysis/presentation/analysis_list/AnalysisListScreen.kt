@@ -13,11 +13,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import space.rodionov.selfanalysis.feature_self_analysis.domain.model.Analysis
 import space.rodionov.selfanalysis.feature_self_analysis.presentation.Screen
+import space.rodionov.selfanalysis.util.Constants.TAG_DEBUG
 
 //@ExperimentalAnimationApi
 @Composable
@@ -59,8 +61,11 @@ fun AnalysisListScreen(
                 )
                 Spacer(modifier = Modifier.height(16.dp))
                 LazyColumn(
-                    modifier = Modifier.fillMaxSize()
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(Color.LightGray),
                 ) {
+                    Log.d(TAG_DEBUG, "LazyColumn: listSize = ${state.analysisList.size}")
                     items(state.analysisList.size) { i ->
                         val analysis = state.analysisList[i]
                         if(i > 0) {
@@ -68,11 +73,12 @@ fun AnalysisListScreen(
                         }
                         AnalysisItem(
                             analysis = analysis,
-                            modifier = Modifier.fillMaxWidth()
+                            modifier = Modifier
+                                .fillMaxWidth()
                                 .clickable {
                                     navController.navigate(
                                         Screen.EditAddAnalysisScreen.route +
-                                        "?analysisId=${analysis.id}"
+                                                "?analysisId=${analysis.id}"
                                     )
                                 }
                         )

@@ -9,10 +9,8 @@ import space.rodionov.selfanalysis.util.Constants.TAG_DEBUG
 class AnalysisRepoFakeImpl: AnalysisRepo {
 
 
-//    private val _analysisList = MutableStateFlow<List<Analysis>>(emptyList())
-//    val analysisList: StateFlow<List<Analysis>> = _analysisList.asStateFlow()
 
-    val fakeList = listOf(
+    private val fakeList = listOf(
         Analysis(
             situation = "Now these are the names of the children of Israel, which came into Egypt; every man and his household came with Jacob.",
             emotions = "Reuben, Simeon, Levi, and Judah",
@@ -77,24 +75,42 @@ class AnalysisRepoFakeImpl: AnalysisRepo {
     }
 
     override fun getAllAnalysis(): Flow<List<Analysis>> = flow {
+        Log.d(TAG_DEBUG, "getAllAnalysis: flowcollector listsize = ${fakeList.size}")
         emit(fakeList)
     }
 
-    override fun getAnalysisBy(searchQuery: String, emotionFilter: String): Flow<List<Analysis>> = flow {
-       emit(fakeList.filter {
-           (it.emotions.contains(emotionFilter) || it.feelings.contains(emotionFilter)) ||
-                   (it.situation.contains(searchQuery) ||
-                           it.emotions.contains(searchQuery) ||
-                           it.feelings.contains(searchQuery) ||
-                           it.inTheBody.contains(searchQuery) ||
-                           it.wantedToDo?.contains(searchQuery) == true ||
-                           it.whatDoesTheFeelingMean?.contains(searchQuery) == true ||
-                           it.thoughts?.contains(searchQuery) == true ||
-                           it.fears?.contains(searchQuery) == true ||
-                           it.askingFromHP?.contains(searchQuery) == true ||
-                           it.innerCritic?.contains(searchQuery) == true ||
-                           it.lovingParent?.contains(searchQuery) == true ||
-                           it.date.contains(searchQuery))
-       })
+    override fun getAnalysisBy(searchQuery: String, emotionFilter: String): Flow<MutableList<Analysis>> = flow {
+//        emit(fakeList.filter {
+//           (it.emotions.contains(emotionFilter) || it.feelings.contains(emotionFilter)) ||
+//                   (it.situation.contains(searchQuery) ||
+//                           it.emotions.contains(searchQuery) ||
+//                           it.feelings.contains(searchQuery) ||
+//                           it.inTheBody.contains(searchQuery) ||
+//                           it.wantedToDo?.contains(searchQuery) == true ||
+//                           it.whatDoesTheFeelingMean?.contains(searchQuery) == true ||
+//                           it.thoughts?.contains(searchQuery) == true ||
+//                           it.fears?.contains(searchQuery) == true ||
+//                           it.askingFromHP?.contains(searchQuery) == true ||
+//                           it.innerCritic?.contains(searchQuery) == true ||
+//                           it.lovingParent?.contains(searchQuery) == true ||
+//                           it.date.contains(searchQuery))
+//       })
+
+        emit(fakeList.filter {
+            Log.d(TAG_DEBUG, "getAnalysisBy: flowcollector listsize = ${fakeList.size}")
+            (it.emotions.contains(emotionFilter) || it.feelings.contains(emotionFilter)) ||
+                    (it.situation.contains(searchQuery) ||
+                            it.emotions.contains(searchQuery) ||
+                            it.feelings.contains(searchQuery) ||
+                            it.inTheBody.contains(searchQuery) ||
+                            it.wantedToDo?.contains(searchQuery) == true ||
+                            it.whatDoesTheFeelingMean?.contains(searchQuery) == true ||
+                            it.thoughts?.contains(searchQuery) == true ||
+                            it.fears?.contains(searchQuery) == true ||
+                            it.askingFromHP?.contains(searchQuery) == true ||
+                            it.innerCritic?.contains(searchQuery) == true ||
+                            it.lovingParent?.contains(searchQuery) == true ||
+                            it.date.contains(searchQuery))
+        }.toMutableList())
     }
 }

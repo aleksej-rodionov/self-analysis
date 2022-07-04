@@ -29,6 +29,9 @@ class AnalysisListViewModel @Inject constructor(
     private val _eventFlow = MutableSharedFlow<UIEvent>()
     val eventFlow = _eventFlow.asSharedFlow()
 
+    init {
+        onSearch("")
+    }
 
 
     private var searchJob: Job? = null
