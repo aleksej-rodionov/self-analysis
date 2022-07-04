@@ -12,6 +12,7 @@ import space.rodionov.selfanalysis.feature_self_analysis.data.local.AnalysisDao
 import space.rodionov.selfanalysis.feature_self_analysis.data.local.AnalysisDatabase
 import space.rodionov.selfanalysis.feature_self_analysis.data.preferences.PrefStore
 import space.rodionov.selfanalysis.feature_self_analysis.data.preferences.PrefStoreJetPack
+import space.rodionov.selfanalysis.feature_self_analysis.data.repository.AnalysisRepoFakeImpl
 import space.rodionov.selfanalysis.feature_self_analysis.data.repository.AnalysisRepoImpl
 import space.rodionov.selfanalysis.feature_self_analysis.data.repository.PrefRepoImpl
 import space.rodionov.selfanalysis.feature_self_analysis.domain.manager.AnalysisManager
@@ -29,10 +30,15 @@ object AppModule {
     @Singleton
     fun providePrefRepo(prefStore: PrefStore): PrefRepo = PrefRepoImpl(prefStore)
 
+//    @Provides
+//    @Singleton
+//    fun provideAnalysisRepo(analysisDao: AnalysisDao): AnalysisRepo =
+//        AnalysisRepoImpl(analysisDao)
+
     @Provides
     @Singleton
-    fun provideAnalysisRepo(analysisDao: AnalysisDao): AnalysisRepo =
-        AnalysisRepoImpl(analysisDao)
+    fun provideAnalysisRepo(): AnalysisRepo =
+        AnalysisRepoFakeImpl()
 
     @Provides
     @Singleton
