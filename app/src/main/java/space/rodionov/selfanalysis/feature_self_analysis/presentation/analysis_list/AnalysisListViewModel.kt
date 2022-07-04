@@ -30,7 +30,7 @@ class AnalysisListViewModel @Inject constructor(
     val eventFlow = _eventFlow.asSharedFlow()
 
     init {
-        onSearch("")
+        onSearch("s")
     }
 
 
