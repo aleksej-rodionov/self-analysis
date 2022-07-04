@@ -29,8 +29,9 @@ class AnalysisListViewModel @Inject constructor(
     private val _eventFlow = MutableSharedFlow<UIEvent>()
     val eventFlow = _eventFlow.asSharedFlow()
 
-    private var searchJob: Job? = null
 
+
+    private var searchJob: Job? = null
     fun onSearch(query: String) {
         _searchQuery.value = query
         searchJob?.cancel()

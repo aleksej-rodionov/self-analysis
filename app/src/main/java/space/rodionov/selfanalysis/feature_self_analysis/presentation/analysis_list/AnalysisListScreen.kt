@@ -45,7 +45,6 @@ fun AnalysisListScreen(
         Box(
             modifier = Modifier
                 .background(MaterialTheme.colors.background)
-
         ) {
             Column(
                 modifier = Modifier
@@ -53,15 +52,10 @@ fun AnalysisListScreen(
                     .padding(16.dp)
             ) {
                 TextField(
-                    value = "viewModel.searchQuery.value",
-                    onValueChange = viewModel::onSearch, //{
-//                        Log.d("HUJ", "AnalysisListScreen: onvaluechange = $it")
-
-//                                    },
+                    value = viewModel.searchQuery.value,
+                    onValueChange = viewModel::onSearch,
                     modifier = Modifier.fillMaxWidth(),
-                    placeholder = {
-                        Text(text = "Search...")
-                    }
+                    placeholder = { Text(text = "Search...") }
                 )
                 Spacer(modifier = Modifier.height(16.dp))
                 LazyColumn(
