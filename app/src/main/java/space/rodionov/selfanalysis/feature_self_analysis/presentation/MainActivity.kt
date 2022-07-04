@@ -2,6 +2,7 @@ package space.rodionov.selfanalysis.feature_self_analysis.presentation
 
 import android.app.Activity
 import android.content.res.Configuration
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -14,6 +15,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toDrawable
+import androidx.core.view.ViewCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
@@ -37,28 +39,50 @@ import space.rodionov.selfanalysis.util.redrawViewGroup
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
+//    private val binding by lazy {
+//        ActivityMainBinding.inflate(layoutInflater)
+//    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+//        val view = binding.root
+//        setContentView(view)
 
-        setContent {
-            SelfAnalysisTheme {
-                Surface(
-                    color =MaterialTheme.colors.background
-                ) {
-                    val navController = rememberNavController()
-                    NavHost(
-                        navController = navController,
-                        startDestination = Screen.AnalysisListScreen.route
+//        window.apply {
+//            decorView.systemUiVisibility =
+//                View.SYSTEM_UI_FLAG_LAYOUT_STABLE or
+//                        View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+//
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//                decorView.systemUiVisibility = decorView.systemUiVisibility or
+//                        View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+//            }
+//
+//            statusBarColor = ContextCompat.getColor(context, R.color.transparentGray15)
+//            navigationBarColor = ContextCompat.getColor(context, R.color.transparentGray15)
+//        }
+
+//        binding.navHostFragment.apply {
+            setContent {
+                SelfAnalysisTheme {
+                    Surface(
+                        color = MaterialTheme.colors.background
                     ) {
-                        composable(
-                            route = Screen.AnalysisListScreen.route
+                        val navController = rememberNavController()
+                        NavHost(
+                            navController = navController,
+                            startDestination = Screen.AnalysisListScreen.route
                         ) {
-                            AnalysisListScreen(navController = navController)
+                            composable(
+                                route = Screen.AnalysisListScreen.route
+                            ) {
+                                AnalysisListScreen(navController = navController)
+                            }
                         }
                     }
                 }
             }
-        }
+//        }
 
 //        val navHostFragment =
 //            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
@@ -81,6 +105,7 @@ class MainActivity : AppCompatActivity() {
 //                val follow = it?: return@collectLatest
 //                if (follow) viewModel.updateMode(getSystemTheme())
 //            }
+//        }
 //        }
     }
 
@@ -124,6 +149,24 @@ class MainActivity : AppCompatActivity() {
         }
 //        }
     }
+
+//    private fun setupInsets() {
+//        ViewCompat.setOnApplyWindowInsetsListener(binding.container) { _, insets ->
+//            if (insets.systemWindowInsetTop > 0) {
+//                if (!vm.insetTopIsSetup) {
+//                    vm.windowTopInset.value = insets.systemWindowInsetTop
+//                    vm.insetTopIsSetup = true
+//                }
+//            }
+//            if (insets.systemWindowInsetBottom > 0) {
+//                if (!vm.insetBottomIsSetup) {
+//                    vm.windowBottomInset.value = insets.systemWindowInsetBottom
+//                    vm.insetBottomIsSetup = true
+//                }
+//            }
+//            insets
+//        }
+//    }
 
 //    override fun onSupportNavigateUp(): Boolean {
 //        return navController.navigateUp() || super.onSupportNavigateUp()

@@ -45,6 +45,7 @@ fun AnalysisListScreen(
         Box(
             modifier = Modifier
                 .background(MaterialTheme.colors.background)
+
         ) {
             Column(
                 modifier = Modifier

@@ -14,15 +14,12 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
-import com.jaiselrahman.filepicker.activity.FilePickerActivity
-import com.jaiselrahman.filepicker.model.MediaFile
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import space.rodionov.selfanalysis.R
 import space.rodionov.selfanalysis.data.Note
-import space.rodionov.selfanalysis.databinding.FragmentNotesBinding
 import space.rodionov.selfanalysis.exhaustive
 import space.rodionov.selfanalysis.onQueryTextChanged
 import space.rodionov.selfanalysis.util.redrawViewGroup
