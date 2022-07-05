@@ -15,6 +15,7 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import space.rodionov.selfanalysis.feature_self_analysis.domain.manager.AnalysisManager
 import space.rodionov.selfanalysis.feature_self_analysis.domain.manager.PrefManager
+import space.rodionov.selfanalysis.feature_self_analysis.domain.util.NoteOrder
 import space.rodionov.selfanalysis.util.Constants.EMPTY
 import space.rodionov.selfanalysis.util.Constants.TAG_DEBUG
 import javax.inject.Inject
@@ -33,19 +34,18 @@ class AnalysisListViewModel @Inject constructor(
     private val _state = mutableStateOf(AnalysisListState())
     val state: State<AnalysisListState> = _state
 
-    private val _eventFlow = MutableSharedFlow<UIEvent>()
-    val eventFlow = _eventFlow.asSharedFlow()
+//    private val _eventFlow = MutableSharedFlow<UIEvent>()
+//    val eventFlow = _eventFlow.asSharedFlow()
 
     init {
-        getAnalysisList(searchQuery.value, emotionFilter.value)
+        getAnalysisList(searchQuery.value, emotionFilter.value, state.value.noteOrder)
     }
 
     private var getAnalysisListJob: Job? = null
-    private fun getAnalysisList(query: String?, emotionFilter: String?) {
+    private fun getAnalysisList(query: String?, emotionFilter: String?, noteOrder: NoteOrder) { // todo добавить третий аргумент ноутОрдер
         getAnalysisListJob?.cancel()
         getAnalysisListJob = analysisManager.getAnalysisBy(query, emotionFilter)
             .onEach {
-                Log.d(TAG_DEBUG, "getAnalysisList: listSize = ${it.size}")
                 _state.value = state.value.copy(
                     analysisList = it
                 )
@@ -59,7 +59,15 @@ class AnalysisListViewModel @Inject constructor(
                 onSearch(action.newQuery)
             }
             is AnalysisListAction.EmotionFilterChange -> {
-                getAnalysisList(searchQuery.value, action.newEmoFilter)
+                getAnalysisList(searchQuery.value, action.newEmoFilter, state.value.noteOrder)
+            }
+            is AnalysisListAction.Order -> {
+                if (state.value.noteOrder::class == action.noteOrder::class &&
+                    state.value.noteOrder.orderType == action.noteOrder.orderType
+                ) {
+                    return
+                }
+                getAnalysisList(searchQuery.value, emotionFilter.value, action.noteOrder)
             }
             is AnalysisListAction.DeleteNote -> {
 
@@ -68,19 +76,21 @@ class AnalysisListViewModel @Inject constructor(
 
             }
             is AnalysisListAction.ToggleOrderSection -> {
-
+                _state.value = state.value.copy(
+                    isOrderSectionVisible = !state.value.isOrderSectionVisible
+                )
             }
         }
     }
 
 
     private var searchJob: Job? = null
-    fun onSearch(query: String) {
+    private fun onSearch(query: String) {
         _searchQuery.value = query
         searchJob?.cancel()
         searchJob = viewModelScope.launch {
             delay(700L)
-            getAnalysisList(query, emotionFilter.value ?: EMPTY) // todo implement emotion filter
+            getAnalysisList(query, emotionFilter.value ?: EMPTY, state.value.noteOrder) // todo implement emotion filter
         }
     }
 
