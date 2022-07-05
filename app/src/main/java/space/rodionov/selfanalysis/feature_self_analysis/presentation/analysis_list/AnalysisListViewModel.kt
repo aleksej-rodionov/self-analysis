@@ -1,5 +1,6 @@
 package space.rodionov.selfanalysis.feature_self_analysis.presentation.analysis_list
 
+import android.util.Log
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
@@ -15,6 +16,7 @@ import kotlinx.coroutines.launch
 import space.rodionov.selfanalysis.feature_self_analysis.domain.manager.AnalysisManager
 import space.rodionov.selfanalysis.feature_self_analysis.domain.manager.PrefManager
 import space.rodionov.selfanalysis.util.Constants.EMPTY
+import space.rodionov.selfanalysis.util.Constants.TAG_DEBUG
 import javax.inject.Inject
 
 @HiltViewModel
@@ -43,6 +45,7 @@ class AnalysisListViewModel @Inject constructor(
         getAnalysisListJob?.cancel()
         getAnalysisListJob = analysisManager.getAnalysisBy(query, emotionFilter)
             .onEach {
+                Log.d(TAG_DEBUG, "getAnalysisList: listSize = ${it.size}")
                 _state.value = state.value.copy(
                     analysisList = it
                 )
@@ -53,7 +56,7 @@ class AnalysisListViewModel @Inject constructor(
     fun onAction(action: AnalysisListAction) {
         when (action) {
             is AnalysisListAction.SearchQueryChange -> {
-                getAnalysisList(action.newQuery, emotionFilter.value ?: EMPTY)
+                onSearch(action.newQuery)
             }
             is AnalysisListAction.EmotionFilterChange -> {
                 getAnalysisList(searchQuery.value, action.newEmoFilter)
@@ -71,15 +74,15 @@ class AnalysisListViewModel @Inject constructor(
     }
 
 
-//    private var searchJob: Job? = null
-//    fun onSearch(query: String) {
-//        _searchQuery.value = query
-//        searchJob?.cancel()
-//        searchJob = viewModelScope.launch {
-//            delay(700L)
-//            analysisManager.getAnalysisBy(query, "") // todo implement emotion filter
-//        }
-//    }
+    private var searchJob: Job? = null
+    fun onSearch(query: String) {
+        _searchQuery.value = query
+        searchJob?.cancel()
+        searchJob = viewModelScope.launch {
+            delay(700L)
+            getAnalysisList(query, emotionFilter.value ?: EMPTY) // todo implement emotion filter
+        }
+    }
 
 
     sealed class UIEvent {

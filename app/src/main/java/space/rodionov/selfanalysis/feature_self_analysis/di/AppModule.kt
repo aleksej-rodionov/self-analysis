@@ -30,15 +30,15 @@ object AppModule {
     @Singleton
     fun providePrefRepo(prefStore: PrefStore): PrefRepo = PrefRepoImpl(prefStore)
 
-//    @Provides
-//    @Singleton
-//    fun provideAnalysisRepo(analysisDao: AnalysisDao): AnalysisRepo =
-//        AnalysisRepoImpl(analysisDao)
-
     @Provides
     @Singleton
-    fun provideAnalysisRepo(): AnalysisRepo =
-        AnalysisRepoFakeImpl()
+    fun provideAnalysisRepo(analysisDao: AnalysisDao): AnalysisRepo =
+        AnalysisRepoImpl(analysisDao)
+
+//    @Provides
+//    @Singleton
+//    fun provideAnalysisRepo(): AnalysisRepo =
+//        AnalysisRepoFakeImpl()
 
     @Provides
     @Singleton

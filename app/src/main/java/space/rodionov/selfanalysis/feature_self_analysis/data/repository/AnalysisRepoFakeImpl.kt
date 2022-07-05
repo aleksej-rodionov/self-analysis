@@ -98,20 +98,22 @@ class AnalysisRepoFakeImpl: AnalysisRepo {
 //       })
 
         emit(fakeList.filter {
-            Log.d(TAG_DEBUG, "getAnalysisBy: flowcollector listsize = ${fakeList.size}")
-            (it.emotions.contains(emotionFilter ?: EMPTY) || it.feelings.contains(emotionFilter ?: EMPTY)) ||
-                    (it.situation.contains(searchQuery ?: EMPTY) ||
-                            it.emotions.contains(searchQuery ?: EMPTY) ||
-                            it.feelings.contains(searchQuery ?: EMPTY) ||
-                            it.inTheBody.contains(searchQuery ?: EMPTY) ||
-                            it.wantedToDo?.contains(searchQuery ?: EMPTY) == true ||
-                            it.whatDoesTheFeelingMean?.contains(searchQuery ?: EMPTY) == true ||
-                            it.thoughts?.contains(searchQuery ?: EMPTY) == true ||
-                            it.fears?.contains(searchQuery ?: EMPTY) == true ||
-                            it.askingFromHP?.contains(searchQuery ?: EMPTY) == true ||
-                            it.innerCritic?.contains(searchQuery ?: EMPTY) == true ||
-                            it.lovingParent?.contains(searchQuery ?: EMPTY) == true ||
-                            it.date.contains(searchQuery ?: EMPTY))
+            //todo здесь починить функцию
+            (it.emotions.contains(emotionFilter ?: EMPTY) || it.feelings.contains(
+                emotionFilter ?: EMPTY
+            )) ||
+                    (searchQuery.toString() in it.situation ||
+                            searchQuery.toString() in it.emotions ||
+                            searchQuery.toString() in it.feelings ||
+                            searchQuery.toString() in it.inTheBody ||
+                            (it.wantedToDo != null && searchQuery.toString() in it.wantedToDo) ||
+                            (it.whatDoesTheFeelingMean != null && searchQuery.toString() in it.whatDoesTheFeelingMean)||
+                            (it.thoughts != null && searchQuery.toString() in it.thoughts)||
+                            (it.fears != null && searchQuery.toString() in it.fears)||
+                            (it.askingFromHP != null && searchQuery.toString() in it.askingFromHP)||
+                            (it.innerCritic != null && searchQuery.toString() in it.innerCritic)||
+                            (it.lovingParent != null && searchQuery.toString() in it.lovingParent)||
+                            searchQuery.toString() in it.date)
         }.toMutableList())
     }
 }
