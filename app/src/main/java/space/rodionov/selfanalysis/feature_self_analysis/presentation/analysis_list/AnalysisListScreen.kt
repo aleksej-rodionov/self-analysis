@@ -1,7 +1,6 @@
 package space.rodionov.selfanalysis.feature_self_analysis.presentation.analysis_list
 
 import android.util.Log
-import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -17,8 +16,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import space.rodionov.selfanalysis.feature_self_analysis.domain.model.Analysis
 import space.rodionov.selfanalysis.feature_self_analysis.presentation.Screen
+import space.rodionov.selfanalysis.util.Constants.EMPTY
 import space.rodionov.selfanalysis.util.Constants.TAG_DEBUG
 
 //@ExperimentalAnimationApi
@@ -53,11 +52,17 @@ fun AnalysisListScreen(
                     .fillMaxSize()
                     .padding(16.dp)
             ) {
-                TextField(
+                OutlinedTextField(
+
                     value = viewModel.searchQuery.value,
-                    onValueChange = viewModel::onSearch,
+                    onValueChange = {
+                        viewModel.onAction(AnalysisListAction.SearchQueryChange(it))
+                    },
                     modifier = Modifier.fillMaxWidth(),
-                    placeholder = { Text(text = "Search...") }
+                    placeholder = { Text(text = "Search...") },
+
+//                    label = {
+//                        Text(text = "Search...") }
                 )
                 Spacer(modifier = Modifier.height(16.dp))
                 LazyColumn(

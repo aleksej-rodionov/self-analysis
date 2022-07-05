@@ -9,9 +9,12 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import space.rodionov.selfanalysis.feature_self_analysis.domain.manager.AnalysisManager
 import space.rodionov.selfanalysis.feature_self_analysis.domain.manager.PrefManager
+import space.rodionov.selfanalysis.util.Constants.EMPTY
 import javax.inject.Inject
 
 @HiltViewModel
@@ -22,6 +25,8 @@ class AnalysisListViewModel @Inject constructor(
 
     private val _searchQuery = mutableStateOf("")
     val searchQuery: State<String> = _searchQuery
+    private val _emotionFilter = mutableStateOf("")
+    val emotionFilter: State<String> = _emotionFilter
 
     private val _state = mutableStateOf(AnalysisListState())
     val state: State<AnalysisListState> = _state
@@ -30,19 +35,51 @@ class AnalysisListViewModel @Inject constructor(
     val eventFlow = _eventFlow.asSharedFlow()
 
     init {
-        onSearch("s")
+        getAnalysisList(searchQuery.value, emotionFilter.value)
     }
 
+    private var getAnalysisListJob: Job? = null
+    private fun getAnalysisList(query: String?, emotionFilter: String?) {
+        getAnalysisListJob?.cancel()
+        getAnalysisListJob = analysisManager.getAnalysisBy(query, emotionFilter)
+            .onEach {
+                _state.value = state.value.copy(
+                    analysisList = it
+                )
+            }
+            .launchIn(viewModelScope)
+    }
 
-    private var searchJob: Job? = null
-    fun onSearch(query: String) {
-        _searchQuery.value = query
-        searchJob?.cancel()
-        searchJob = viewModelScope.launch {
-            delay(700L)
-            analysisManager.getAnalysisBy(query, "") // todo implement emotion filter
+    fun onAction(action: AnalysisListAction) {
+        when (action) {
+            is AnalysisListAction.SearchQueryChange -> {
+                getAnalysisList(action.newQuery, emotionFilter.value ?: EMPTY)
+            }
+            is AnalysisListAction.EmotionFilterChange -> {
+                getAnalysisList(searchQuery.value, action.newEmoFilter)
+            }
+            is AnalysisListAction.DeleteNote -> {
+
+            }
+            is AnalysisListAction.RestoreNote -> {
+
+            }
+            is AnalysisListAction.ToggleOrderSection -> {
+
+            }
         }
     }
+
+
+//    private var searchJob: Job? = null
+//    fun onSearch(query: String) {
+//        _searchQuery.value = query
+//        searchJob?.cancel()
+//        searchJob = viewModelScope.launch {
+//            delay(700L)
+//            analysisManager.getAnalysisBy(query, "") // todo implement emotion filter
+//        }
+//    }
 
 
     sealed class UIEvent {

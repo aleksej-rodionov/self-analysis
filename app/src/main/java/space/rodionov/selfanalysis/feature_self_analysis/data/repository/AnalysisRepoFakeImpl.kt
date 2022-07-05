@@ -4,6 +4,7 @@ import android.util.Log
 import kotlinx.coroutines.flow.*
 import space.rodionov.selfanalysis.feature_self_analysis.domain.model.Analysis
 import space.rodionov.selfanalysis.feature_self_analysis.domain.repository.AnalysisRepo
+import space.rodionov.selfanalysis.util.Constants.EMPTY
 import space.rodionov.selfanalysis.util.Constants.TAG_DEBUG
 
 class AnalysisRepoFakeImpl: AnalysisRepo {
@@ -79,7 +80,7 @@ class AnalysisRepoFakeImpl: AnalysisRepo {
         emit(fakeList)
     }
 
-    override fun getAnalysisBy(searchQuery: String, emotionFilter: String): Flow<MutableList<Analysis>> = flow {
+    override fun getAnalysisBy(searchQuery: String?, emotionFilter: String?): Flow<MutableList<Analysis>> = flow {
 //        emit(fakeList.filter {
 //           (it.emotions.contains(emotionFilter) || it.feelings.contains(emotionFilter)) ||
 //                   (it.situation.contains(searchQuery) ||
@@ -98,19 +99,19 @@ class AnalysisRepoFakeImpl: AnalysisRepo {
 
         emit(fakeList.filter {
             Log.d(TAG_DEBUG, "getAnalysisBy: flowcollector listsize = ${fakeList.size}")
-            (it.emotions.contains(emotionFilter) || it.feelings.contains(emotionFilter)) ||
-                    (it.situation.contains(searchQuery) ||
-                            it.emotions.contains(searchQuery) ||
-                            it.feelings.contains(searchQuery) ||
-                            it.inTheBody.contains(searchQuery) ||
-                            it.wantedToDo?.contains(searchQuery) == true ||
-                            it.whatDoesTheFeelingMean?.contains(searchQuery) == true ||
-                            it.thoughts?.contains(searchQuery) == true ||
-                            it.fears?.contains(searchQuery) == true ||
-                            it.askingFromHP?.contains(searchQuery) == true ||
-                            it.innerCritic?.contains(searchQuery) == true ||
-                            it.lovingParent?.contains(searchQuery) == true ||
-                            it.date.contains(searchQuery))
+            (it.emotions.contains(emotionFilter ?: EMPTY) || it.feelings.contains(emotionFilter ?: EMPTY)) ||
+                    (it.situation.contains(searchQuery ?: EMPTY) ||
+                            it.emotions.contains(searchQuery ?: EMPTY) ||
+                            it.feelings.contains(searchQuery ?: EMPTY) ||
+                            it.inTheBody.contains(searchQuery ?: EMPTY) ||
+                            it.wantedToDo?.contains(searchQuery ?: EMPTY) == true ||
+                            it.whatDoesTheFeelingMean?.contains(searchQuery ?: EMPTY) == true ||
+                            it.thoughts?.contains(searchQuery ?: EMPTY) == true ||
+                            it.fears?.contains(searchQuery ?: EMPTY) == true ||
+                            it.askingFromHP?.contains(searchQuery ?: EMPTY) == true ||
+                            it.innerCritic?.contains(searchQuery ?: EMPTY) == true ||
+                            it.lovingParent?.contains(searchQuery ?: EMPTY) == true ||
+                            it.date.contains(searchQuery ?: EMPTY))
         }.toMutableList())
     }
 }

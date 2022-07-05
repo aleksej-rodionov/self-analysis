@@ -33,7 +33,7 @@ interface AnalysisDao {
             " OR lovingParent LIKE '%' || :searchQuery || '%') " +
             " AND emotions LIKE '%' || :emotionFilter || '%'" +
             "ORDER BY id DESC")
-    fun getNotes(searchQuery: String, emotionFilter: String): Flow<List<AnalysisEntity>>
+    fun getNotes(searchQuery: String?, emotionFilter: String?): Flow<List<AnalysisEntity>>
 
     @Query("SELECT * FROM analysis_table ORDER BY id DESC")
     fun getAllNotes(): Flow<List<AnalysisEntity>>

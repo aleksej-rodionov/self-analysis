@@ -30,8 +30,8 @@ class AnalysisManager(
     }
 
     fun getAnalysisBy(
-        searchQuery: String,
-        emotionFilter: String
+        searchQuery: String?,
+        emotionFilter: String?
     ): Flow<List<Analysis>> {
         return analysisRepo.getAnalysisBy(
             searchQuery, emotionFilter

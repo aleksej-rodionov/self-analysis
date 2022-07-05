@@ -35,7 +35,7 @@ class AnalysisRepoImpl(
        }
     }
 
-    override fun getAnalysisBy(searchQuery: String, emotionFilter: String): Flow<List<Analysis>> {
+    override fun getAnalysisBy(searchQuery: String?, emotionFilter: String?): Flow<List<Analysis>> {
         return analysisDao.getNotes(searchQuery, emotionFilter).map { list ->
             list.map {
                 it.toAnalysis()
