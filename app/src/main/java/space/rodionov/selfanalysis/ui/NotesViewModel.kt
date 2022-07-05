@@ -14,8 +14,6 @@ import kotlinx.coroutines.channels.Channel
 //import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.flow.*
-import space.rodionov.selfanalysis.data.Note
-import space.rodionov.selfanalysis.data.NoteDao
 import space.rodionov.selfanalysis.filePickerIntent
 import space.rodionov.selfanalysis.generateFile
 import space.rodionov.selfanalysis.goToFileIntent

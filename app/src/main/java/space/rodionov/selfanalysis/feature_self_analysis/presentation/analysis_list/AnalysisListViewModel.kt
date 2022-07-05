@@ -44,10 +44,11 @@ class AnalysisListViewModel @Inject constructor(
     private var getAnalysisListJob: Job? = null
     private fun getAnalysisList(query: String?, emotionFilter: String?, noteOrder: NoteOrder) { // todo добавить третий аргумент ноутОрдер
         getAnalysisListJob?.cancel()
-        getAnalysisListJob = analysisManager.getAnalysisBy(query, emotionFilter)
+        getAnalysisListJob = analysisManager.getAnalysisBy(query, emotionFilter, noteOrder)
             .onEach {
                 _state.value = state.value.copy(
-                    analysisList = it
+                    analysisList = it,
+                    noteOrder = noteOrder
                 )
             }
             .launchIn(viewModelScope)

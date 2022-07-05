@@ -4,6 +4,7 @@ import android.util.Log
 import kotlinx.coroutines.flow.*
 import space.rodionov.selfanalysis.feature_self_analysis.domain.model.Analysis
 import space.rodionov.selfanalysis.feature_self_analysis.domain.repository.AnalysisRepo
+import space.rodionov.selfanalysis.feature_self_analysis.domain.util.NoteOrder
 import space.rodionov.selfanalysis.util.Constants.EMPTY
 import space.rodionov.selfanalysis.util.Constants.TAG_DEBUG
 

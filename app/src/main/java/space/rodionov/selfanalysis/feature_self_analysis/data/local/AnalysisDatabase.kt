@@ -10,7 +10,7 @@ import space.rodionov.selfanalysis.feature_self_analysis.domain.model.Analysis
 import javax.inject.Inject
 import javax.inject.Provider
 
-@Database(entities = [AnalysisEntity::class], version = 1, exportSchema = false)
+@Database(entities = [Note::class], version = 1, exportSchema = false)
 abstract class AnalysisDatabase : RoomDatabase() {
 
     abstract fun analysisDao(): AnalysisDao

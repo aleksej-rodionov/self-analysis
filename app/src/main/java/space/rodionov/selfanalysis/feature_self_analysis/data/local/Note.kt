@@ -7,9 +7,9 @@ import kotlinx.android.parcel.Parcelize
 import space.rodionov.selfanalysis.feature_self_analysis.domain.model.Analysis
 
 
-@Entity(tableName = "analysis_table")
+@Entity(tableName = "note_table")
 @Parcelize
-data class AnalysisEntity( // todo в конце переименовать в Note чтобы не было конфликта с уе выложенной версией Database
+data class Note(
     val situation: String,
     val emotions: String/*? = null*/,
     val feelings: String/*? = null*/,

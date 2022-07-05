@@ -19,7 +19,6 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import space.rodionov.selfanalysis.R
-import space.rodionov.selfanalysis.data.Note
 import space.rodionov.selfanalysis.exhaustive
 import space.rodionov.selfanalysis.onQueryTextChanged
 import space.rodionov.selfanalysis.util.redrawViewGroup

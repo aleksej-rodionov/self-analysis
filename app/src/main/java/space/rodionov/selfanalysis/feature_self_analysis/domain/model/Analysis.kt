@@ -1,6 +1,6 @@
 package space.rodionov.selfanalysis.feature_self_analysis.domain.model
 
-import space.rodionov.selfanalysis.feature_self_analysis.data.local.AnalysisEntity
+import space.rodionov.selfanalysis.feature_self_analysis.data.local.Note
 
 data class Analysis(
     val situation: String,
@@ -17,8 +17,8 @@ data class Analysis(
     val date: String,
     val id: Int? = null
 ) {
-    fun toAnalysisEntity() : AnalysisEntity {
-        return AnalysisEntity(
+    fun toAnalysisEntity() : Note {
+        return Note(
             situation,
             emotions,
             feelings,

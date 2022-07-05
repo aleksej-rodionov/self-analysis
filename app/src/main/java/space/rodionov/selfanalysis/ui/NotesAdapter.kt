@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import space.rodionov.selfanalysis.data.Note
 import space.rodionov.selfanalysis.util.ModeForAdapter
 import space.rodionov.selfanalysis.util.fetchColors
 import space.rodionov.selfanalysis.util.fetchTheme
