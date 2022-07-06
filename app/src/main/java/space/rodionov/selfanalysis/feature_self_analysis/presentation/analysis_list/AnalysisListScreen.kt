@@ -93,7 +93,7 @@ fun AnalysisListScreen(
                 Spacer(modifier = Modifier.height(16.dp))
                 OutlinedTextField(
 
-                    value = viewModel.searchQuery.value,
+                    value = state.searchQuery,
                     onValueChange = {
                         viewModel.onAction(AnalysisListAction.SearchQueryChange(it))
                     },

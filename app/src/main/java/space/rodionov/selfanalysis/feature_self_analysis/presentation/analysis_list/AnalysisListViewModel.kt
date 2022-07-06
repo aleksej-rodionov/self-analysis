@@ -26,11 +26,6 @@ class AnalysisListViewModel @Inject constructor(
     private val prefManager: PrefManager
 ) : ViewModel() {
 
-    private val _searchQuery = mutableStateOf("")
-    val searchQuery: State<String> = _searchQuery
-    private val _emotionFilter = mutableStateOf("")
-    val emotionFilter: State<String> = _emotionFilter
-
     private val _state = mutableStateOf(AnalysisListState())
     val state: State<AnalysisListState> = _state
 
@@ -38,17 +33,18 @@ class AnalysisListViewModel @Inject constructor(
 //    val eventFlow = _eventFlow.asSharedFlow()
 
     init {
-        getAnalysisList(searchQuery.value, emotionFilter.value, state.value.noteOrder)
+        getAnalysisList(state.value.searchQuery, state.value.emotionFilter, state.value.noteOrder)
     }
 
     private var getAnalysisListJob: Job? = null
-    private fun getAnalysisList(query: String?, emotionFilter: String?, noteOrder: NoteOrder) { // todo добавить третий аргумент ноутОрдер
+    private fun getAnalysisList(query: String, emotionFilter: String?, noteOrder: NoteOrder) { // todo добавить третий аргумент ноутОрдер
         getAnalysisListJob?.cancel()
         getAnalysisListJob = analysisManager.getAnalysisBy(query, emotionFilter, noteOrder)
             .onEach {
                 _state.value = state.value.copy(
                     analysisList = it,
-                    noteOrder = noteOrder
+                    noteOrder = noteOrder,
+                    searchQuery = query
                 )
             }
             .launchIn(viewModelScope)
@@ -60,7 +56,7 @@ class AnalysisListViewModel @Inject constructor(
                 onSearch(action.newQuery)
             }
             is AnalysisListAction.EmotionFilterChange -> {
-                getAnalysisList(searchQuery.value, action.newEmoFilter, state.value.noteOrder)
+                getAnalysisList(state.value.searchQuery, action.newEmoFilter, state.value.noteOrder)
             }
             is AnalysisListAction.Order -> {
                 if (state.value.noteOrder::class == action.noteOrder::class &&
@@ -68,7 +64,7 @@ class AnalysisListViewModel @Inject constructor(
                 ) {
                     return
                 }
-                getAnalysisList(searchQuery.value, emotionFilter.value, action.noteOrder)
+                getAnalysisList(state.value.searchQuery, state.value.emotionFilter, action.noteOrder)
             }
             is AnalysisListAction.DeleteNote -> {
 
@@ -87,11 +83,11 @@ class AnalysisListViewModel @Inject constructor(
 
     private var searchJob: Job? = null
     private fun onSearch(query: String) {
-        _searchQuery.value = query
+        _state.value = state.value.copy(searchQuery = query)
         searchJob?.cancel()
         searchJob = viewModelScope.launch {
             delay(700L)
-            getAnalysisList(query, emotionFilter.value ?: EMPTY, state.value.noteOrder) // todo implement emotion filter
+            getAnalysisList(query, state.value.emotionFilter, state.value.noteOrder) // todo implement emotion filter
         }
     }
 
