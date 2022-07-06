@@ -34,3 +34,5 @@ data class Analysis(
         )
     }
 }
+
+class InvalidAnalysisException(message: String): Exception(message)
