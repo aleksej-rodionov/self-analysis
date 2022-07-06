@@ -8,11 +8,11 @@ import space.rodionov.selfanalysis.util.Constants.EMPTY
 
 data class AnalysisListState(
     val analysisList: List<Analysis> = emptyList(),
+    val searchQuery: String = EMPTY,
+    val emotionFilter: String = EMPTY,
     val noteOrder: NoteOrder = NoteOrder.Date(OrderType.Descending),
     val isOrderSectionVisible: Boolean = false,
     val isLoading: Boolean = false,
-    val searchQuery: String = EMPTY,
-    val emotionFilter: String = EMPTY,
     val mode: Int = DEFAULT_INT,
     val language: Int = DEFAULT_INT
 )

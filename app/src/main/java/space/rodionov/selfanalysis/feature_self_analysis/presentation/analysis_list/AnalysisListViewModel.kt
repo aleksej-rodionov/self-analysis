@@ -37,14 +37,14 @@ class AnalysisListViewModel @Inject constructor(
     }
 
     private var getAnalysisListJob: Job? = null
-    private fun getAnalysisList(query: String, emotionFilter: String?, noteOrder: NoteOrder) { // todo добавить третий аргумент ноутОрдер
+    private fun getAnalysisList(query: String, emotionFilter: String, noteOrder: NoteOrder) { // todo добавить третий аргумент ноутОрдер
         getAnalysisListJob?.cancel()
         getAnalysisListJob = analysisManager.getAnalysisBy(query, emotionFilter, noteOrder)
             .onEach {
                 _state.value = state.value.copy(
                     analysisList = it,
-                    noteOrder = noteOrder,
-                    searchQuery = query
+//                    emotionFilter = emotionFilter,
+//                    noteOrder = noteOrder
                 )
             }
             .launchIn(viewModelScope)
@@ -56,15 +56,16 @@ class AnalysisListViewModel @Inject constructor(
                 onSearch(action.newQuery)
             }
             is AnalysisListAction.EmotionFilterChange -> {
-                getAnalysisList(state.value.searchQuery, action.newEmoFilter, state.value.noteOrder)
+                onEmoFilter(action.newEmoFilter)
             }
             is AnalysisListAction.Order -> {
-                if (state.value.noteOrder::class == action.noteOrder::class &&
-                    state.value.noteOrder.orderType == action.noteOrder.orderType
-                ) {
-                    return
-                }
-                getAnalysisList(state.value.searchQuery, state.value.emotionFilter, action.noteOrder)
+//                if (state.value.noteOrder::class == action.noteOrder::class &&
+//                    state.value.noteOrder.orderType == action.noteOrder.orderType
+//                ) {
+//                    return
+//                }
+//                getAnalysisList(state.value.searchQuery, state.value.emotionFilter, action.noteOrder)
+                onOrderChange(action.noteOrder)
             }
             is AnalysisListAction.DeleteNote -> {
 
@@ -80,15 +81,27 @@ class AnalysisListViewModel @Inject constructor(
         }
     }
 
-
     private var searchJob: Job? = null
     private fun onSearch(query: String) {
         _state.value = state.value.copy(searchQuery = query)
         searchJob?.cancel()
         searchJob = viewModelScope.launch {
             delay(700L)
-            getAnalysisList(query, state.value.emotionFilter, state.value.noteOrder) // todo implement emotion filter
+            getAnalysisList(query, state.value.emotionFilter, state.value.noteOrder)
         }
+    }
+
+    private fun onEmoFilter(emoFilter: String) {
+        _state.value = state.value.copy(emotionFilter = emoFilter)
+        getAnalysisList(state.value.searchQuery, emoFilter, state.value.noteOrder)
+    }
+
+    private fun onOrderChange(order: NoteOrder) {
+        if (state.value.noteOrder::class == order::class && state.value.noteOrder.orderType == order.orderType) {
+            return
+        }
+        _state.value = state.value.copy(noteOrder = order)
+        getAnalysisList(state.value.searchQuery, state.value.emotionFilter, order)
     }
 
 
