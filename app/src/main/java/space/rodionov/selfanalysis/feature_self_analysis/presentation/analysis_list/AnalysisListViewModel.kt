@@ -37,8 +37,8 @@ class AnalysisListViewModel @Inject constructor(
     }
 
     private var getAnalysisListJob: Job? = null
-    private fun getAnalysisList(query: String, emotionFilter: String, noteOrder: NoteOrder) { // todo добавить третий аргумент ноутОрдер
-        getAnalysisListJob?.cancel()
+    private fun getAnalysisList(query: String, emotionFilter: String, noteOrder: NoteOrder) {
+        getAnalysisListJob?.cancel() //todo а здесь вообще нужна эта Job-а?
         getAnalysisListJob = analysisManager.getAnalysisBy(query, emotionFilter, noteOrder)
             .onEach {
                 _state.value = state.value.copy(

@@ -21,10 +21,10 @@ class EditAddViewModel @Inject constructor(
     private val _state = mutableStateOf(EditAddAnalysisState())
     val state: State<EditAddAnalysisState> = _state
 
-//    private val _eventFlow = MutableSharedFlow<EditAddEvent>()
-//    val eventFlow = _eventFlow.asSharedFlow()
+    private val _eventFlow = MutableSharedFlow<UIEvent>()
+    val eventFlow = _eventFlow.asSharedFlow()
 
-    fun onAction(action :EditAddAction) {
+    fun onAction(action: EditAddAction) {
         when (action) {
             is EditAddAction.SaveNote -> {
                 //todo все как в CleanArchitectureNoteApp
@@ -38,8 +38,9 @@ class EditAddViewModel @Inject constructor(
 
 
 
-    sealed class EditAddEvent {
-        data class ShowSnackbar(val msg: String) : EditAddEvent()
+    sealed class UIEvent {
+        data class ShowSnackbar(val msg: String) : UIEvent()
+        object NavigateBack : UIEvent()
     }
 }
 

@@ -18,18 +18,22 @@ import androidx.core.graphics.drawable.toDrawable
 import androidx.core.view.ViewCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.navArgument
 import androidx.navigation.ui.setupActionBarWithNavController
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import space.rodionov.porosenokpetr.ui_compose.theme.SelfAnalysisTheme
 import space.rodionov.selfanalysis.R
 import space.rodionov.selfanalysis.databinding.ActivityMainBinding
+import space.rodionov.selfanalysis.feature_self_analysis.edit_add_analysis.presentation.EditAddAnalysisScreen
 import space.rodionov.selfanalysis.feature_self_analysis.presentation.analysis_list.AnalysisListScreen
+import space.rodionov.selfanalysis.util.Constants.DEFAULT_INT
 import space.rodionov.selfanalysis.util.Constants.TAG_MODE
 import space.rodionov.selfanalysis.util.ModeConstants.MODE_DARK
 import space.rodionov.selfanalysis.util.ModeConstants.MODE_LIGHT
@@ -52,10 +56,23 @@ class MainActivity : AppCompatActivity() {
                             navController = navController,
                             startDestination = Screen.AnalysisListScreen.route
                         ) {
+
                             composable(
                                 route = Screen.AnalysisListScreen.route
                             ) {
                                 AnalysisListScreen(navController = navController)
+                            }
+
+                            composable(
+                                route = Screen.EditAddAnalysisScreen.route + "?analysisId={analysisId}",
+                                arguments = listOf(
+                                    navArgument(name = "analysisId") {
+                                        type = NavType.IntType
+                                        defaultValue = DEFAULT_INT
+                                    }
+                                )
+                            ) {
+                                EditAddAnalysisScreen(navController = navController)
                             }
                         }
                     }
