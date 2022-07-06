@@ -30,8 +30,9 @@ fun AnalysisListScreen(
     viewModel: AnalysisListViewModel = hiltViewModel()
 ) {
     val scaffoldState = rememberScaffoldState()
-    val state = viewModel.state.value
     val scope = rememberCoroutineScope()
+
+    val state = viewModel.state.value
 
     Scaffold(
         scaffoldState = scaffoldState,

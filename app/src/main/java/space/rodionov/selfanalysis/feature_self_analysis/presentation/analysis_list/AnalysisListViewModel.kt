@@ -42,9 +42,7 @@ class AnalysisListViewModel @Inject constructor(
         getAnalysisListJob = analysisManager.getAnalysisBy(query, emotionFilter, noteOrder)
             .onEach {
                 _state.value = state.value.copy(
-                    analysisList = it,
-//                    emotionFilter = emotionFilter,
-//                    noteOrder = noteOrder
+                    analysisList = it
                 )
             }
             .launchIn(viewModelScope)
@@ -59,12 +57,6 @@ class AnalysisListViewModel @Inject constructor(
                 onEmoFilter(action.newEmoFilter)
             }
             is AnalysisListAction.Order -> {
-//                if (state.value.noteOrder::class == action.noteOrder::class &&
-//                    state.value.noteOrder.orderType == action.noteOrder.orderType
-//                ) {
-//                    return
-//                }
-//                getAnalysisList(state.value.searchQuery, state.value.emotionFilter, action.noteOrder)
                 onOrderChange(action.noteOrder)
             }
             is AnalysisListAction.DeleteNote -> {
