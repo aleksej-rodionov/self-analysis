@@ -7,8 +7,7 @@ sealed class EditAddAction {
     data class SituationChange(val value: String): EditAddAction()
     data class SituationFocusChange(val focusState: FocusState): EditAddAction()
 
-//    data class EmotionsChange(val value: String): EditAddAction()
-//    data class EmotionsFocusChange(val focusState: FocusState): EditAddAction()
+    data class EmotionsChange(val value: List<String>): EditAddAction() //todo List поменять на Set
 
     data class FeelingsChange(val value: String): EditAddAction()
     data class FeelingsFocusChange(val focusState: FocusState): EditAddAction()
@@ -37,6 +36,7 @@ sealed class EditAddAction {
     data class LovingParentChange(val value: String): EditAddAction()
     data class LovingParentFocusChange(val focusState: FocusState): EditAddAction()
 
+    // todo other actions
 
 
     object SaveNote: EditAddAction()

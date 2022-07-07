@@ -6,7 +6,7 @@ import space.rodionov.selfanalysis.util.Constants
 data class EditAddAnalysisState(
     val analysis: Analysis? = null,
     val situation: AnalysisTextFieldState = AnalysisTextFieldState(hint = "Situation ..."),
-    val emotions: String = "EMPTY",
+    val emotions: List<String> = listOf(), //todo list поменять на set
     val feelings: AnalysisTextFieldState = AnalysisTextFieldState(hint = "Feelings ..."),
     val inTheBody: AnalysisTextFieldState = AnalysisTextFieldState(hint = "In the body ..."),
     val wantedToDo: AnalysisTextFieldState = AnalysisTextFieldState(hint = "What I wanted to do ..."),

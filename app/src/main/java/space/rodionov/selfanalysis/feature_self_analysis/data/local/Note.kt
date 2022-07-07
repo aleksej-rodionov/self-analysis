@@ -30,7 +30,7 @@ data class Note(
     fun toAnalysis() : Analysis {
         return Analysis(
             situation,
-            emotions,
+            emotions, //todo deserialize string to list/set
             feelings,
             inTheBody,
             wantedToDo,

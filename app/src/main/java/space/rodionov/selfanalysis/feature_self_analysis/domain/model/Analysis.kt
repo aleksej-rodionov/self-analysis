@@ -4,7 +4,7 @@ import space.rodionov.selfanalysis.feature_self_analysis.data.local.Note
 
 data class Analysis(
     val situation: String,
-    val emotions: String/*? = null*/,
+    val emotions: List<String>/*? =null*/, //todo поменять list на set
     val feelings: String/*? = null*/,
     val inTheBody: String/*? = null*/,
     val wantedToDo: String? = null,
@@ -20,7 +20,7 @@ data class Analysis(
     fun toAnalysisEntity() : Note {
         return Note(
             situation,
-            emotions,
+            emotions, //todo serialize list/set
             feelings,
             inTheBody,
             wantedToDo,

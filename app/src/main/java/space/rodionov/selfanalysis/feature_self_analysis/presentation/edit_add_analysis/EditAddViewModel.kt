@@ -38,74 +38,71 @@ class EditAddViewModel @Inject constructor(
                 _state.value = state.value.copy(situation = state.value.situation.copy(isHintVisible = !action.focusState.isFocused && state.value.situation.text.isBlank()))
             }
 
-//            is EditAddAction.EmotionsChange -> {
-//                _state.value = state.value.copy(situation = state.value.emotion.copy(text = action.value))
-//            }
-//            is EditAddAction.EmotionsFocusChange -> {
-//                _state.value = state.value.copy(situation = state.value.emotion.copy(isHintVisible = !action.focusState.isFocused && state.value.emotion.text.isBlank()))
-//            }
+            is EditAddAction.EmotionsChange -> {
+                _state.value = state.value.copy(emotions = action.value)
+            }
 
             is EditAddAction.FeelingsChange -> {
-                _state.value = state.value.copy(situation = state.value.feelings.copy(text = action.value))
+                _state.value = state.value.copy(feelings = state.value.feelings.copy(text = action.value))
             }
             is EditAddAction.FeelingsFocusChange -> {
-                _state.value = state.value.copy(situation = state.value.feelings.copy(isHintVisible = !action.focusState.isFocused && state.value.feelings.text.isBlank()))
+                _state.value = state.value.copy(feelings = state.value.feelings.copy(isHintVisible = !action.focusState.isFocused && state.value.feelings.text.isBlank()))
             }
 
             is EditAddAction.InTheBodyChange -> {
-                _state.value = state.value.copy(situation = state.value.inTheBody.copy(text = action.value))
+                _state.value = state.value.copy(inTheBody = state.value.inTheBody.copy(text = action.value))
             }
             is EditAddAction.InTheBodyFocusChange -> {
-                _state.value = state.value.copy(situation = state.value.inTheBody.copy(isHintVisible = !action.focusState.isFocused && state.value.inTheBody.text.isBlank()))
+                _state.value = state.value.copy(inTheBody = state.value.inTheBody.copy(isHintVisible = !action.focusState.isFocused && state.value.inTheBody.text.isBlank()))
             }
 
             is EditAddAction.WantedToDoChange -> {
-                _state.value = state.value.copy(situation = state.value.wantedToDo.copy(text = action.value))
+                _state.value = state.value.copy(wantedToDo = state.value.wantedToDo.copy(text = action.value))
             }
             is EditAddAction.WantedToDoFocusChange -> {
-                _state.value = state.value.copy(situation = state.value.wantedToDo.copy(isHintVisible = !action.focusState.isFocused && state.value.wantedToDo.text.isBlank()))
+                _state.value = state.value.copy(wantedToDo = state.value.wantedToDo.copy(isHintVisible = !action.focusState.isFocused && state.value.wantedToDo.text.isBlank()))
             }
 
             is EditAddAction.WhatDoesTheFeelingMeanChange -> {
-                _state.value = state.value.copy(situation = state.value.whatDoesTheFeelingMean.copy(text = action.value))
+                _state.value = state.value.copy(whatDoesTheFeelingMean = state.value.whatDoesTheFeelingMean.copy(text = action.value))
             }
             is EditAddAction.WhatDoesTheFeelingMeanFocusChange -> {
-                _state.value = state.value.copy(situation = state.value.whatDoesTheFeelingMean.copy(isHintVisible = !action.focusState.isFocused && state.value.whatDoesTheFeelingMean.text.isBlank()))
+                _state.value = state.value.copy(whatDoesTheFeelingMean = state.value.whatDoesTheFeelingMean.copy(isHintVisible = !action.focusState.isFocused && state.value.whatDoesTheFeelingMean.text.isBlank()))
             }
 
             is EditAddAction.ThoughtsChange -> {
-                _state.value = state.value.copy(situation = state.value.thoughts.copy(text = action.value))
+                _state.value = state.value.copy(thoughts = state.value.thoughts.copy(text = action.value))
             }
             is EditAddAction.ThoughtsFocusChange -> {
-                _state.value = state.value.copy(situation = state.value.thoughts.copy(isHintVisible = !action.focusState.isFocused && state.value.thoughts.text.isBlank()))
+                _state.value = state.value.copy(thoughts = state.value.thoughts.copy(isHintVisible = !action.focusState.isFocused && state.value.thoughts.text.isBlank()))
             }
 
             is EditAddAction.FearsChange -> {
-                _state.value = state.value.copy(situation = state.value.fears.copy(text = action.value))
+                _state.value = state.value.copy(fears = state.value.fears.copy(text = action.value))
             }
             is EditAddAction.FearsFocusChange -> {
-                _state.value = state.value.copy(situation = state.value.fears.copy(isHintVisible = !action.focusState.isFocused && state.value.fears.text.isBlank()))
+                _state.value = state.value.copy(fears = state.value.fears.copy(isHintVisible = !action.focusState.isFocused && state.value.fears.text.isBlank()))
             }
 
             is EditAddAction.AskingFromHPChange -> {
-                _state.value = state.value.copy(situation = state.value.askingFromHP.copy(text = action.value))
+                _state.value = state.value.copy(askingFromHP = state.value.askingFromHP.copy(text = action.value))
             }
             is EditAddAction.AskingFromHPFocusChange -> {
-                _state.value = state.value.copy(situation = state.value.askingFromHP.copy(isHintVisible = !action.focusState.isFocused && state.value.askingFromHP.text.isBlank()))
+                _state.value = state.value.copy(askingFromHP = state.value.askingFromHP.copy(isHintVisible = !action.focusState.isFocused && state.value.askingFromHP.text.isBlank()))
             }
 
             is EditAddAction.InnerCriticChange -> {
-                _state.value = state.value.copy(situation = state.value.innerCritic.copy(text = action.value))
+                _state.value = state.value.copy(innerCritic = state.value.innerCritic.copy(text = action.value))
             }
             is EditAddAction.InnerCriticFocusChange -> {
-                _state.value = state.value.copy(situation = state.value.innerCritic.copy(isHintVisible = !action.focusState.isFocused && state.value.innerCritic.text.isBlank()))
+                _state.value = state.value.copy(innerCritic = state.value.innerCritic.copy(isHintVisible = !action.focusState.isFocused && state.value.innerCritic.text.isBlank()))
             }
 
             is EditAddAction.LovingParentChange -> {
-                _state.value = state.value.copy(situation = state.value.lovingParent.copy(text = action.value))
+                _state.value = state.value.copy(lovingParent = state.value.lovingParent.copy(text = action.value))
             }
             is EditAddAction.LovingParentFocusChange -> {
-                _state.value = state.value.copy(situation = state.value.lovingParent.copy(isHintVisible = !action.focusState.isFocused && state.value.lovingParent.text.isBlank()))
+                _state.value = state.value.copy(lovingParent = state.value.lovingParent.copy(isHintVisible = !action.focusState.isFocused && state.value.lovingParent.text.isBlank()))
             }
 
 
