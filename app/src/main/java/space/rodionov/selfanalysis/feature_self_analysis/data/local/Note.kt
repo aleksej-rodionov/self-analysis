@@ -4,6 +4,7 @@ import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import kotlinx.android.parcel.Parcelize
+import space.rodionov.selfanalysis.feature_self_analysis.data.misc.toStringList
 import space.rodionov.selfanalysis.feature_self_analysis.domain.model.Analysis
 
 
@@ -30,7 +31,7 @@ data class Note(
     fun toAnalysis() : Analysis {
         return Analysis(
             situation,
-            emotions, //todo deserialize string to list/set
+            emotions.toStringList(),
             feelings,
             inTheBody,
             wantedToDo,

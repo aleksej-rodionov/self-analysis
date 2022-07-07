@@ -6,10 +6,12 @@ import space.rodionov.selfanalysis.feature_self_analysis.data.local.AnalysisDao
 import space.rodionov.selfanalysis.feature_self_analysis.data.local.AnalysisDatabase
 import space.rodionov.selfanalysis.feature_self_analysis.domain.model.Analysis
 import space.rodionov.selfanalysis.feature_self_analysis.domain.repository.AnalysisRepo
+import space.rodionov.selfanalysis.feature_self_analysis.domain.util.ListToStringConverter
 import space.rodionov.selfanalysis.feature_self_analysis.domain.util.NoteOrder
 
 class AnalysisRepoImpl(
-    private val analysisDao: AnalysisDao
+    private val analysisDao: AnalysisDao/*,
+    private val converter: ListToStringConverter*/
 ): AnalysisRepo {
 
     override suspend fun deleteAnalysis(analysis: Analysis) {

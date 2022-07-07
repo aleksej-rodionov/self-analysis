@@ -28,7 +28,7 @@ abstract class AnalysisDatabase : RoomDatabase() {
                 dao.deleteAll()
 
                 val fakeList = listOf(
-                    Analysis(
+                    Note(
                         situation = "Now these are the names of the children of Israel, which came into Egypt; every man and his household came with Jacob.",
                         emotions = "Reuben, Simeon, Levi, and Judah",
                         feelings = "Issachar, Zebulun, and Benjamin",
@@ -43,7 +43,7 @@ abstract class AnalysisDatabase : RoomDatabase() {
                         date = "03.02.1991",
                         id = 0,
                     ),
-                    Analysis(
+                    Note(
                         situation = "And the Egyptians made the children of Israel to serve with rigour:",
                         emotions = "And they made their lives bitter with hard bondage, in morter, and in brick, and in all manner of service in the field: all their service, wherein they made them serve, was with rigour.",
                         feelings = "And the king of Egypt spake to the Hebrew midwives, of which the name of the one was Shiphrah, and the name of the other Puah:",
@@ -58,7 +58,7 @@ abstract class AnalysisDatabase : RoomDatabase() {
                         date = "04.02.1991",
                         id = 1,
                     ),
-                    Analysis(
+                    Note(
                         situation = "And the woman conceived, and bare a son: and when she saw him that he was a goodly child, she hid him three months.",
                         emotions = "And when she could not longer hide him, she took for him an ark of bulrushes, and daubed it with slime and with pitch, and put the child therein; and she laid it in the flags by the river's brink.",
                         feelings = "And his sister stood afar off, to wit what would be done to him.",
@@ -75,7 +75,7 @@ abstract class AnalysisDatabase : RoomDatabase() {
                     ),
                 )
                 fakeList.forEach {
-                    dao.insert(it.toAnalysisEntity())
+                    dao.insert(it)
                 }
             }
         }

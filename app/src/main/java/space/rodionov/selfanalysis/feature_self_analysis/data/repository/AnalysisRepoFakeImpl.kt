@@ -2,6 +2,7 @@ package space.rodionov.selfanalysis.feature_self_analysis.data.repository
 
 import android.util.Log
 import kotlinx.coroutines.flow.*
+import space.rodionov.selfanalysis.feature_self_analysis.data.local.Note
 import space.rodionov.selfanalysis.feature_self_analysis.domain.model.Analysis
 import space.rodionov.selfanalysis.feature_self_analysis.domain.repository.AnalysisRepo
 import space.rodionov.selfanalysis.feature_self_analysis.domain.util.NoteOrder
@@ -13,7 +14,7 @@ class AnalysisRepoFakeImpl: AnalysisRepo {
 
 
     private val fakeList = listOf(
-        Analysis(
+        Note(
             situation = "Now these are the names of the children of Israel, which came into Egypt; every man and his household came with Jacob.",
             emotions = "Reuben, Simeon, Levi, and Judah",
             feelings = "Issachar, Zebulun, and Benjamin",
@@ -28,7 +29,7 @@ class AnalysisRepoFakeImpl: AnalysisRepo {
             date = "03.02.1991",
             id = 0,
         ),
-        Analysis(
+        Note(
             situation = "And the Egyptians made the children of Israel to serve with rigour:",
             emotions = "And they made their lives bitter with hard bondage, in morter, and in brick, and in all manner of service in the field: all their service, wherein they made them serve, was with rigour.",
             feelings = "And the king of Egypt spake to the Hebrew midwives, of which the name of the one was Shiphrah, and the name of the other Puah:",
@@ -43,7 +44,7 @@ class AnalysisRepoFakeImpl: AnalysisRepo {
             date = "04.02.1991",
             id = 1,
         ),
-        Analysis(
+        Note(
             situation = "And the woman conceived, and bare a son: and when she saw him that he was a goodly child, she hid him three months.",
             emotions = "And when she could not longer hide him, she took for him an ark of bulrushes, and daubed it with slime and with pitch, and put the child therein; and she laid it in the flags by the river's brink.",
             feelings = "And his sister stood afar off, to wit what would be done to him.",
@@ -78,7 +79,9 @@ class AnalysisRepoFakeImpl: AnalysisRepo {
 
     override fun getAllAnalysis(): Flow<List<Analysis>> = flow {
         Log.d(TAG_DEBUG, "getAllAnalysis: flowcollector listsize = ${fakeList.size}")
-        emit(fakeList)
+        emit(fakeList.map {
+            it.toAnalysis()
+        })
     }
 
     override fun getAnalysisBy(searchQuery: String?, emotionFilter: String?): Flow<MutableList<Analysis>> = flow {
@@ -100,21 +103,21 @@ class AnalysisRepoFakeImpl: AnalysisRepo {
 
         emit(fakeList.filter {
             //todo здесь починить функцию
-            (it.emotions.contains(emotionFilter ?: EMPTY) || it.feelings.contains(
+            (it.toAnalysis().emotions.contains(emotionFilter ?: EMPTY) || it.toAnalysis().feelings.contains(
                 emotionFilter ?: EMPTY
             )) ||
-                    (searchQuery.toString() in it.situation ||
-                            searchQuery.toString() in it.emotions ||
-                            searchQuery.toString() in it.feelings ||
-                            searchQuery.toString() in it.inTheBody ||
-                            (it.wantedToDo != null && searchQuery.toString() in it.wantedToDo) ||
-                            (it.whatDoesTheFeelingMean != null && searchQuery.toString() in it.whatDoesTheFeelingMean)||
-                            (it.thoughts != null && searchQuery.toString() in it.thoughts)||
-                            (it.fears != null && searchQuery.toString() in it.fears)||
-                            (it.askingFromHP != null && searchQuery.toString() in it.askingFromHP)||
-                            (it.innerCritic != null && searchQuery.toString() in it.innerCritic)||
-                            (it.lovingParent != null && searchQuery.toString() in it.lovingParent)||
-                            searchQuery.toString() in it.date)
-        }.toMutableList())
+                    (searchQuery.toString() in it.toAnalysis().situation ||
+                            searchQuery.toString() in it.toAnalysis().emotions ||
+                            searchQuery.toString() in it.toAnalysis().feelings ||
+                            searchQuery.toString() in it.toAnalysis().inTheBody ||
+                            (it.toAnalysis().wantedToDo != null && searchQuery.toString() in it.toAnalysis().wantedToDo!!) ||
+                            (it.toAnalysis().whatDoesTheFeelingMean != null && searchQuery.toString() in it.toAnalysis().whatDoesTheFeelingMean!!)||
+                            (it.toAnalysis().thoughts != null && searchQuery.toString() in it.toAnalysis().thoughts!!)||
+                            (it.toAnalysis().fears != null && searchQuery.toString() in it.toAnalysis().fears!!)||
+                            (it.toAnalysis().askingFromHP != null && searchQuery.toString() in it.toAnalysis().askingFromHP!!)||
+                            (it.toAnalysis().innerCritic != null && searchQuery.toString() in it.toAnalysis().innerCritic!!)||
+                            (it.toAnalysis().lovingParent != null && searchQuery.toString() in it.toAnalysis().lovingParent!!)||
+                            searchQuery.toString() in it.toAnalysis().date)
+        }.map { it.toAnalysis() }.toMutableList())
     }
 }

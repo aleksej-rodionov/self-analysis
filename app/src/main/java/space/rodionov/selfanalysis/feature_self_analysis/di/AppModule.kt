@@ -12,13 +12,12 @@ import space.rodionov.selfanalysis.feature_self_analysis.data.local.AnalysisDao
 import space.rodionov.selfanalysis.feature_self_analysis.data.local.AnalysisDatabase
 import space.rodionov.selfanalysis.feature_self_analysis.data.preferences.PrefStore
 import space.rodionov.selfanalysis.feature_self_analysis.data.preferences.PrefStoreJetPack
-import space.rodionov.selfanalysis.feature_self_analysis.data.repository.AnalysisRepoFakeImpl
 import space.rodionov.selfanalysis.feature_self_analysis.data.repository.AnalysisRepoImpl
 import space.rodionov.selfanalysis.feature_self_analysis.data.repository.PrefRepoImpl
-import space.rodionov.selfanalysis.feature_self_analysis.domain.manager.AnalysisManager
-import space.rodionov.selfanalysis.feature_self_analysis.domain.manager.PrefManager
+import space.rodionov.selfanalysis.feature_self_analysis.data.type_converter.ListToStringConverterImpl
 import space.rodionov.selfanalysis.feature_self_analysis.domain.repository.AnalysisRepo
 import space.rodionov.selfanalysis.feature_self_analysis.domain.repository.PrefRepo
+import space.rodionov.selfanalysis.feature_self_analysis.domain.util.ListToStringConverter
 import javax.inject.Qualifier
 import javax.inject.Singleton
 
@@ -32,8 +31,8 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideAnalysisRepo(analysisDao: AnalysisDao): AnalysisRepo =
-        AnalysisRepoImpl(analysisDao)
+    fun provideAnalysisRepo(analysisDao: AnalysisDao/*, converter: ListToStringConverter*/): AnalysisRepo =
+        AnalysisRepoImpl(analysisDao/*, converter*/)
 
 //    @Provides
 //    @Singleton
@@ -43,6 +42,10 @@ object AppModule {
     @Provides
     @Singleton
     fun providePrefStore(app: Application): PrefStore = PrefStoreJetPack(app)
+
+//    @Provides
+//    @Singleton
+//    fun provideListToStringConverter(): ListToStringConverter = ListToStringConverterImpl()
 
     @Provides
     @Singleton
