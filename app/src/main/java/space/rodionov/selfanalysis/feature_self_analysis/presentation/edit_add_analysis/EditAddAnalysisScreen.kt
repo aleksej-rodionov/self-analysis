@@ -41,6 +41,8 @@ fun EditAddAnalysisScreen(
     ) {
         Column(modifier = Modifier.fillMaxSize()) {
 
+
+            // todo нарисовать эти ёбаный поля. Но сначала Во вьюмодели логику экшнов?
         }
     }
 

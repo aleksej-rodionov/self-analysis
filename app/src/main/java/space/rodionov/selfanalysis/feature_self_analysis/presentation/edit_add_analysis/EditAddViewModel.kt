@@ -30,22 +30,37 @@ class EditAddViewModel @Inject constructor(
 
     fun onAction(action: EditAddAction) {
         when (action) {
+
+            is EditAddAction.SituationChange -> {
+                _state.value = state.value.copy(situation = state.value.situation.copy(text = action.value))
+            }
+            is EditAddAction.SituationFocusChange -> {
+                _state.value = state.value.copy(situation = state.value.situation.copy(isHintVisible = !action.focusState.isFocused && state.value.situation.text.isBlank()))
+            }
+
+
+
+            // todo other actions
+
+
+
+
             is EditAddAction.SaveNote -> {
                 viewModelScope.launch {
                     try {
                         analysisManager.insertAnalysis(
                             Analysis(
-                                situation = state.value.situation,
+                                situation = state.value.situation.text,
                                 emotions = state.value.emotions,
-                                feelings = state.value.feelings,
-                                inTheBody = state.value.inTheBody,
-                                wantedToDo = state.value.wantedToDo,
-                                whatDoesTheFeelingMean = state.value.whatDoesTheFeelingMean,
-                                thoughts = state.value.thoughts,
-                                fears = state.value.fears,
-                                askingFromHP = state.value.askingFromHP,
-                                innerCritic = state.value.innerCritic,
-                                lovingParent = state.value.lovingParent,
+                                feelings = state.value.feelings.text,
+                                inTheBody = state.value.inTheBody.text,
+                                wantedToDo = state.value.wantedToDo.text,
+                                whatDoesTheFeelingMean = state.value.whatDoesTheFeelingMean.text,
+                                thoughts = state.value.thoughts.text,
+                                fears = state.value.fears.text,
+                                askingFromHP = state.value.askingFromHP.text,
+                                innerCritic = state.value.innerCritic.text,
+                                lovingParent = state.value.lovingParent.text,
                                 date = state.value.date,
                             )
                         )
