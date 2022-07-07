@@ -14,7 +14,6 @@ import space.rodionov.selfanalysis.feature_self_analysis.data.preferences.PrefSt
 import space.rodionov.selfanalysis.feature_self_analysis.data.preferences.PrefStoreJetPack
 import space.rodionov.selfanalysis.feature_self_analysis.data.repository.AnalysisRepoImpl
 import space.rodionov.selfanalysis.feature_self_analysis.data.repository.PrefRepoImpl
-import space.rodionov.selfanalysis.feature_self_analysis.data.type_converter.ListToStringConverterImpl
 import space.rodionov.selfanalysis.feature_self_analysis.domain.repository.AnalysisRepo
 import space.rodionov.selfanalysis.feature_self_analysis.domain.repository.PrefRepo
 import space.rodionov.selfanalysis.feature_self_analysis.domain.util.ListToStringConverter

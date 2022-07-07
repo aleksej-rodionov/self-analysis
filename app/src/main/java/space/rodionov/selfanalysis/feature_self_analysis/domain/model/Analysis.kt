@@ -2,6 +2,7 @@ package space.rodionov.selfanalysis.feature_self_analysis.domain.model
 
 import space.rodionov.selfanalysis.feature_self_analysis.data.local.Note
 import space.rodionov.selfanalysis.feature_self_analysis.data.misc.fromStringListToString
+import space.rodionov.selfanalysis.feature_self_analysis.data.misc.toJson
 
 data class Analysis(
     val situation: String,
@@ -21,7 +22,7 @@ data class Analysis(
     fun toAnalysisEntity() : Note {
         return Note(
             situation,
-            emotions.fromStringListToString(), //todo serialize list/set
+            toJson<List<String>>(emotions), //todo serialize list/set
             feelings,
             inTheBody,
             wantedToDo,
