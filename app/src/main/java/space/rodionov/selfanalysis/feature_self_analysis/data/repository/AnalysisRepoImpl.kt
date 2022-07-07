@@ -10,8 +10,8 @@ import space.rodionov.selfanalysis.feature_self_analysis.domain.util.ListToStrin
 import space.rodionov.selfanalysis.feature_self_analysis.domain.util.NoteOrder
 
 class AnalysisRepoImpl(
-    private val analysisDao: AnalysisDao/*,
-    private val converter: ListToStringConverter*/
+    private val analysisDao: AnalysisDao,
+//    private val converter: ListToStringConverter
 ): AnalysisRepo {
 
     override suspend fun deleteAnalysis(analysis: Analysis) {

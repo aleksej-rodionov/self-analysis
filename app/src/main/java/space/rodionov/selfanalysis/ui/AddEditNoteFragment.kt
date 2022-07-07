@@ -1,4 +1,4 @@
-/*
+package space.rodionov.selfanalysis.ui/*
 package space.rodionov.selfanalysis.ui
 
 import android.graphics.Rect
