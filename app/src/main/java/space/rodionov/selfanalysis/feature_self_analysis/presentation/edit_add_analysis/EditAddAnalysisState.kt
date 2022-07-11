@@ -25,7 +25,8 @@ data class EditAddAnalysisState(
 data class AnalysisTextFieldState(
     val text: String = "",
     val hint: String = "",
-    val isHintVisible: Boolean = true
+    val isHintVisible: Boolean = true,
+    val isError: String? = null
 )
 
 

@@ -30,8 +30,8 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideAnalysisRepo(analysisDao: AnalysisDao/*, converter: ListToStringConverter*/): AnalysisRepo =
-        AnalysisRepoImpl(analysisDao/*, converter*/)
+    fun provideAnalysisRepo(analysisDao: AnalysisDao): AnalysisRepo =
+        AnalysisRepoImpl(analysisDao)
 
 //    @Provides
 //    @Singleton

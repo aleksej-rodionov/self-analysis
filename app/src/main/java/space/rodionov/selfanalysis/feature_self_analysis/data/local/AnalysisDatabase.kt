@@ -30,7 +30,7 @@ abstract class AnalysisDatabase : RoomDatabase() {
                 val fakeList = listOf(
                     Note(
                         situation = "Now these are the names of the children of Israel, which came into Egypt; every man and his household came with Jacob.",
-                        emotions = "Reuben, Simeon, Levi, and Judah",
+                        emotions = "[ \"Reuben\" ,  \"Simeon\" ,  \"Levi\" ,  \"Judah\" ]",
                         feelings = "Issachar, Zebulun, and Benjamin",
                         inTheBody = "Dan, and Naphtali, Gad, and Asher.",
                         wantedToDo = "And all the souls that came out of the loins of Jacob were seventy souls: for Joseph was in Egypt already.",
@@ -45,7 +45,7 @@ abstract class AnalysisDatabase : RoomDatabase() {
                     ),
                     Note(
                         situation = "And the Egyptians made the children of Israel to serve with rigour:",
-                        emotions = "And they made their lives bitter with hard bondage, in morter, and in brick, and in all manner of service in the field: all their service, wherein they made them serve, was with rigour.",
+                        emotions = "[ \"Reuben\" ,  \"Simeon\" ]",
                         feelings = "And the king of Egypt spake to the Hebrew midwives, of which the name of the one was Shiphrah, and the name of the other Puah:",
                         inTheBody = "And he said, When ye do the office of a midwife to the Hebrew women, and see them upon the stools; if it be a son, then ye shall kill him: but if it be a daughter, then she shall live.",
                         wantedToDo = "But the midwives feared God, and did not as the king of Egypt commanded them, but saved the men children alive.",
@@ -60,7 +60,7 @@ abstract class AnalysisDatabase : RoomDatabase() {
                     ),
                     Note(
                         situation = "And the woman conceived, and bare a son: and when she saw him that he was a goodly child, she hid him three months.",
-                        emotions = "And when she could not longer hide him, she took for him an ark of bulrushes, and daubed it with slime and with pitch, and put the child therein; and she laid it in the flags by the river's brink.",
+                        emotions = "[ \"Reuben\" ,  \"Simeon\" ,  \"Judah\" ]",
                         feelings = "And his sister stood afar off, to wit what would be done to him.",
                         inTheBody = "And the daughter of Pharaoh came down to wash herself at the river; and her maidens walked along by the river's side; and when she saw the ark among the flags, she sent her maid to fetch it.",
                         wantedToDo = "And when she had opened it, she saw the child: and, behold, the babe wept. And she had compassion on him, and said, This is one of the Hebrews' children.",

@@ -1,6 +1,5 @@
 package space.rodionov.selfanalysis.feature_self_analysis.presentation.analysis_list
 
-import android.util.Log
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
@@ -8,16 +7,12 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import space.rodionov.selfanalysis.feature_self_analysis.domain.manager.AnalysisManager
 import space.rodionov.selfanalysis.feature_self_analysis.domain.manager.PrefManager
 import space.rodionov.selfanalysis.feature_self_analysis.domain.util.NoteOrder
-import space.rodionov.selfanalysis.util.Constants.EMPTY
-import space.rodionov.selfanalysis.util.Constants.TAG_DEBUG
 import javax.inject.Inject
 
 @HiltViewModel
