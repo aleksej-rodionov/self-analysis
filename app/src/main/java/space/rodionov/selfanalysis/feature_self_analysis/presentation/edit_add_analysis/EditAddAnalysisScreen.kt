@@ -45,14 +45,131 @@ fun EditAddAnalysisScreen(
             Spacer(modifier = Modifier.height(8.dp))
 
             TextField(
-                value = state.situation,
+                value = state.situation.text,
                 onValueChange = {
                     viewModel.onAction(EditAddAction.SituationChange(it))
                 },
                 isError = state.situation.isError != null,
                 modifier = Modifier.fillMaxWidth(),
-                        placeholder = {
+                placeholder = {
                     state.situation.hint
+                }
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+
+            TextField(
+                value = state.feelings.text,
+                onValueChange = {
+                    viewModel.onAction(EditAddAction.SituationChange(it))
+                },
+                isError = state.feelings.isError != null,
+                modifier = Modifier.fillMaxWidth(),
+                placeholder = {
+                    state.feelings.hint
+                }
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+
+            TextField(
+                value = state.inTheBody.text,
+                onValueChange = {
+                    viewModel.onAction(EditAddAction.SituationChange(it))
+                },
+                isError = state.inTheBody.isError != null,
+                modifier = Modifier.fillMaxWidth(),
+                placeholder = {
+                    state.inTheBody.hint
+                }
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+
+            TextField(
+                value = state.wantedToDo.text,
+                onValueChange = {
+                    viewModel.onAction(EditAddAction.SituationChange(it))
+                },
+                isError = state.wantedToDo.isError != null,
+                modifier = Modifier.fillMaxWidth(),
+                placeholder = {
+                    state.wantedToDo.hint
+                }
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+
+            TextField(
+                value = state.whatDoesTheFeelingMean.text,
+                onValueChange = {
+                    viewModel.onAction(EditAddAction.SituationChange(it))
+                },
+                isError = state.whatDoesTheFeelingMean.isError != null,
+                modifier = Modifier.fillMaxWidth(),
+                placeholder = {
+                    state.whatDoesTheFeelingMean.hint
+                }
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+
+            TextField(
+                value = state.thoughts.text,
+                onValueChange = {
+                    viewModel.onAction(EditAddAction.SituationChange(it))
+                },
+                isError = state.thoughts.isError != null,
+                modifier = Modifier.fillMaxWidth(),
+                placeholder = {
+                    state.thoughts.hint
+                }
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+
+            TextField(
+                value = state.fears.text,
+                onValueChange = {
+                    viewModel.onAction(EditAddAction.SituationChange(it))
+                },
+                isError = state.fears.isError != null,
+                modifier = Modifier.fillMaxWidth(),
+                placeholder = {
+                    state.fears.hint
+                }
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+
+            TextField(
+                value = state.askingFromHP.text,
+                onValueChange = {
+                    viewModel.onAction(EditAddAction.SituationChange(it))
+                },
+                isError = state.askingFromHP.isError != null,
+                modifier = Modifier.fillMaxWidth(),
+                placeholder = {
+                    state.askingFromHP.hint
+                }
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+
+            TextField(
+                value = state.innerCritic.text,
+                onValueChange = {
+                    viewModel.onAction(EditAddAction.SituationChange(it))
+                },
+                isError = state.innerCritic.isError != null,
+                modifier = Modifier.fillMaxWidth(),
+                placeholder = {
+                    state.innerCritic.hint
+                }
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+
+            TextField(
+                value = state.lovingParent.text,
+                onValueChange = {
+                    viewModel.onAction(EditAddAction.SituationChange(it))
+                },
+                isError = state.lovingParent.isError != null,
+                modifier = Modifier.fillMaxWidth(),
+                placeholder = {
+                    state.lovingParent.hint
                 }
             )
             Spacer(modifier = Modifier.height(8.dp))
