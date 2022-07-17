@@ -1,8 +1,10 @@
 package space.rodionov.selfanalysis.feature_self_analysis.presentation.edit_add_analysis
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.selection.toggleable
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -22,8 +24,7 @@ fun CustomChip(
     Surface(
         modifier = Modifier.padding(14.dp),
         elevation = 8.dp,
-        shape = MaterialTheme.shapes.medium,
-        color = if (isSelected) Color.LightGray else MaterialTheme.colors.primary
+        shape = MaterialTheme.shapes.medium
     ) {
         Row(
             modifier = Modifier.toggleable(

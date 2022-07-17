@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.google.accompanist.flowlayout.FlowRow
 import space.rodionov.selfanalysis.feature_self_analysis.presentation.edit_add_analysis.CustomChip
 
 
@@ -21,8 +22,11 @@ fun CustomChipGroup(
     Column(
         modifier = Modifier.padding(8.dp)
     ) {
-        LazyRow {
-            items(emotions) {
+        FlowRow(
+            mainAxisSpacing = 16.dp,
+            crossAxisSpacing = 16.dp,
+        ) {
+            emotions.forEach {
                 CustomChip(
                     name = it,
                     isSelected = selectedEmotion == it,

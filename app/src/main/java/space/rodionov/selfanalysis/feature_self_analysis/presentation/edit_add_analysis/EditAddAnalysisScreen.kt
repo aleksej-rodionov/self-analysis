@@ -17,6 +17,7 @@ import kotlinx.coroutines.flow.collectLatest
 import space.rodionov.selfanalysis.R
 import space.rodionov.selfanalysis.feature_self_analysis.presentation.edit_add_analysis.EditAddAction
 import space.rodionov.selfanalysis.feature_self_analysis.presentation.edit_add_analysis.EditAddViewModel
+import space.rodionov.selfanalysis.feature_self_analysis.presentation.edit_add_analysis.custom.CustomChipGroup
 
 @Composable
 fun EditAddAnalysisScreen(
@@ -51,7 +52,7 @@ fun EditAddAnalysisScreen(
                 onValueChange = {
                     viewModel.onAction(EditAddAction.SituationChange(it))
                 },
-                isError = state.situation.isError != null,
+                isError = true/*state.situation.isError != null*/,
                 modifier = Modifier.fillMaxWidth(),
                 placeholder = {
                     state.situation.hint
@@ -59,6 +60,13 @@ fun EditAddAnalysisScreen(
                 label = {
                     Text(text = stringResource(id = R.string.situation))
                 }
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+
+            CustomChipGroup(
+//                onSelectedChanged = {
+//                    viewModel.onAction(EditAddAction.EmotionsChange())
+//                }
             )
             Spacer(modifier = Modifier.height(8.dp))
 
