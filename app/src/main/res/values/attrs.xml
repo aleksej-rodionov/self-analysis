@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="MyStyleable">
+        <attr name="bg_main" format="color" />
+        <attr name="bg_beta" format="color" />
+        <attr name="text_main" format="color"/>
+        <attr name="text_beta" format="color"/>
+        <attr name="bg_accent" format="color"/>
+        <attr name="bg_light" format="color"/>
+    </declare-styleable>
+
+</resources>
